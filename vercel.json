@@ -4,7 +4,6 @@
   "installCommand": "",
   "buildCommand": "node build.cjs && node check.cjs && node production-check.cjs",
   "outputDirectory": "dist",
-  "public": false,
   "headers": [
     {
       "source": "/(.*)",
