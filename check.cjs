@@ -1,14 +1,11 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const bundled=fs.readFileSync(__dirname+'/BREACH.html','utf8');
-assert(bundled.includes(fs.readFileSync(__dirname+'/dist/game.js','utf8')),'Standalone JavaScript matches source');
-assert(bundled.includes(fs.readFileSync(__dirname+'/dist/style.css','utf8')),'Standalone CSS matches source');
-const events={};const elements={};let nextFrame;
+﻿
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const bundled=fs.readFileSync(__dirname+'/BREACH.html','utf8'),source=fs.readFileSync(__dirname+'/dist/game.js','utf8');
+assert(bundled.includes(source),'Standalone JavaScript matches source');assert(bundled.includes(fs.readFileSync(__dirname+'/dist/style.css','utf8')),'Standalone CSS matches source');assert(!/window\.(?:BREACH|__qa)\s*=/.test(source),'No production diagnostic API');
+const events={},elements={},store={};let nextFrame;
 const gl=new Proxy({getShaderParameter:()=>true,getProgramParameter:()=>true,getError:()=>0},{get:(o,k)=>o[k]||(()=>({}))});
-function element(id){return elements[id]??={style:{},classList:{add(){},remove(){}},value:id==='difficulty'?'regular':'1',textContent:'',innerHTML:'',addEventListener(){},getContext:()=>gl,requestPointerLock(){}};}
-const document={getElementById:element,addEventListener:(n,cb)=>events[n]=cb,exitPointerLock(){},pointerLockElement:element('game')};
-const window={addEventListener(){}};const sandbox={document,window,console,performance:{now:()=>1000},requestAnimationFrame:cb=>nextFrame=cb,innerWidth:1280,innerHeight:800,devicePixelRatio:1,Math,Float32Array,Int32Array};
-vm.runInNewContext(fs.readFileSync(__dirname+'/dist/game.js','utf8'),sandbox);
-const game=window.BREACH;const tests=game.test();for(const [name,pass]of Object.entries(tests))assert(pass,name);
-game.start();let a=game.getState();events.keydown({code:'KeyW',preventDefault(){}});for(let i=0;i<30;i++)game.update(.016);events.keyup({code:'KeyW'});let walked=game.getState().position[2];assert(walked<17,'WASD movement');events.keydown({code:'KeyW',preventDefault(){}});events.keydown({code:'ShiftLeft'});for(let i=0;i<30;i++)game.update(.016);let sprinted=game.getState().position[2];assert(walked-sprinted>3,'Sprint speed');events.keydown({code:'KeyC'});game.update(.016);assert(element('movement').textContent==='SLIDING','Slide activates');events.keyup({code:'KeyW'});events.keyup({code:'ShiftLeft'});
-for(let i=0;i<180;i++)game.update(.016);game.render();assert(game.getState().errors.length===0,'No simulation errors');
-console.log(JSON.stringify({checks:{...tests,movement:true,sprint:true,slide:true,simulation:true},note:'Simulation uses a mocked WebGL context; visual browser QA is separate.'},null,2));
+function element(id){return elements[id]??={style:{},classList:{add(){},remove(){},toggle(){}},dataset:{},value:id==='difficulty'?'regular':'1',textContent:'',innerHTML:'',addEventListener(n,cb){events[id+':'+n]=cb;},querySelector:()=>element('paragraph'),getContext:()=>gl,requestPointerLock(){},disabled:false};}
+const document={getElementById:element,addEventListener(n,cb){(events[n]??=[]).push(cb);},exitPointerLock(){},pointerLockElement:element('game')};const window={addEventListener(){}};let seed=129883;const random=Object.create(Math);random.random=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);
+const sandbox={document,window,console,performance:{now:()=>1000},requestAnimationFrame:cb=>nextFrame=cb,innerWidth:1280,innerHeight:800,devicePixelRatio:1,Math:random,Float32Array,Int32Array,Set,localStorage:{getItem:k=>store[k]||null,setItem:(k,v)=>store[k]=v},setTimeout(){}};
+const instrumented=source.replace('initializeUI();','window.__qa={run:code=>eval(code)};initializeUI();');vm.runInNewContext(instrumented,sandbox);const qa=window.__qa;qa.event=(name,event)=>{for(const cb of events[name]||[])cb({preventDefault(){},...event});};const results=require('./qa-tests.cjs')(qa);
+console.log(JSON.stringify({checks:Object.keys(results).length,results,note:'Simulation with mocked WebGL; real browser tests are separate.'},null,2));for(const [name,pass]of Object.entries(results))assert.equal(pass,true,name);

@@ -30,3 +30,14 @@ secrets/
 *.log
 .DS_Store
 Thumbs.db
+
+# Arsenal update local QA / one-time migration tools
+backup-2026-10-15/
+QA-arsenal.html
+build-qa.cjs
+check-legacy.cjs
+expand.cjs
+ui-upgrade.cjs
+final-fixes.cjs
+write-release-notes.cjs
+*.inc

@@ -6,6 +6,12 @@
 - check.cjs verifies simulation behavior with a mocked rendering context. Do not describe it as browser or visual verification.
 - Use Opera GX for this project's browser playtests, as requested by the user. Verify the loaded local path and update label before inspecting graphics.
 - After editing dist/, run build.cjs and check.cjs; the checks must confirm the standalone HTML contains the exact current JavaScript and CSS.
+- Never ship simulation mutation controls or references to live arrays through a diagnostic API. Inject test-only access into an isolated QA build, and assert that dist/game.js and BREACH.html expose no such API.
+- Wave rewards must use a threshold crossing plus a wave identifier; resupply resets at wave spawn. Check transitions at multiple frame rates and confirm rewards happen once.
+- All equipment activation paths share one cooldown and require the playing state. Test quick-use, selected equipment, rapid input, and pause together.
+- Loadout changes must not create ammunition. Preserve owned items separately, validate category and ownership, and apply in-run changes at the next wave's resupply.
+- Validate player positions before movement and restore invalid positions to a verified safe point. Check non-finite coordinates and out-of-arena recovery.
+- expand.cjs and *.inc are one-time upgrade tooling; dist/game.js is the maintained runtime source. Do not regenerate it from old backup files after making direct runtime fixes.
 - If the user reports that a local game link does nothing, give the browser's Ctrl+O workflow with the exact verified HTML path rather than repeating the same chat link. Confirm the file exists before providing the path.
 - For production asset checks, recursively inventory files, including hidden files, and reject symbolic links. Empty directories are not deployable assets; nested unexpected files must still fail the check.
-- Before publishing source, inspect tracked files as well as ignore rules. The existing local Git index tracks .openai/hosting.json and qa-scenario.js despite .gitignore; publish only a reviewed clean snapshot, or remove excluded files from tracking and audit history before pushing it. Verify the remote file list after upload.
+- Before publishing source, inspect tracked files as well as ignore rules. The existing local Git index tracks .openai/hosting.json and qa-scenario.js despite .gitignore; publish only a reviewed clean snapshot, or remove excluded files from tracking and audit history before pushing it. After browser uploads, compare the recursive remote file list and hashes against the prepared manifest, explicitly checking .gitignore, .vercelignore, and check.cjs; these were missing from the initial manual upload.

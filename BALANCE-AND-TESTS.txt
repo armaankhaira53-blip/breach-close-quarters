@@ -1,0 +1,168 @@
+BREACH / ARSENAL UPDATE 03 — BALANCE AND VERIFICATION
+Updated locally: 2026-10-15. Created and owned by Arkh_53.
+
+IMPLEMENTED
+15 permanent unlocks; three category-validated equipped slots; scrollable collection;
+mouse-wheel selection; saved credits/ownership/loadout with backup export and merge;
+three-second crate roll with reward fixed and saved before animation; Info odds table.
+Every wave resets limited ammunition and equipment. Changes selected during a run
+apply next wave; replacing an equipped item never removes it from the collection.
+All five factions, their requested variants, K9 events, drones, mines, temporary
+effects, procedural models/animations/synthesized sounds, crouch/slide, and menu credit.
+Arena expanded from 36 x 44 to 42 x 50 metres with connected outer lanes, six new
+cover positions and a crawl-through canopy. Existing cover AI, navigation, recoil,
+hit markers, tracers, physics ragdolls, materials, sky and directional shadows retained.
+
+CRATE REWARDS — EXACT UNCONDITIONAL ODDS
+Item | Category | Rarity | Probability
+AR-4 assault rifle | Primary | Common | 14.00%
+Glock 19 | Secondary | Common | 16.00%
+M67 fragmentation grenade | Equipment | Uncommon | 9.00%
+Longshot sniper rifle | Primary | Epic | 3.00%
+BR-3 burst assault rifle | Primary | Rare | 6.00%
+Double-barrel shotgun | Primary | Rare | 5.00%
+Viper submachine gun | Primary | Uncommon | 9.00%
+RPG-7 | Primary | Mythic | 0.10%
+Iron six revolver | Secondary | Rare | 5.00%
+Machete | Secondary | Uncommon | 8.50%
+Karambit | Secondary | Rare | 5.00%
+Field bandage | Equipment | Common | 10.00%
+Flashbang | Equipment | Rare | 4.00%
+Boogie bomb | Equipment | Epic | 2.00%
+Smoke bomb | Equipment | Uncommon | 3.40%
+Total: 100.00%. RPG: 0.10%, or 1 in 1,000 independent rolls; no guarantee/pity.
+One reward per 300-credit crate. Duplicate: refund 120 credits, retain ownership.
+No cash purchases. New collection starts with 600 credits and AR-4/Glock/M67.
+A cleared wave pays 150 credits once. A reload during a roll retains the awarded item;
+the shop shows the last saved reward. The reel shows illustrative cycling items,
+then reveals the exact item awarded; it does not conduct a second random selection.
+
+WAVE SCHEDULE AND VARIANT WEIGHTS
+Waves 1–4 Street Thugs; 5–9 Police; 10–14 Cartel; 15–19 Mercenaries;
+wave 20 onward SWAT is the only human faction.
+Street Thugs: Bat thug 55%; Pistol thug 35%; SMG thug 10%.
+Police Officers: Pistol officer 65%; Pump shotgun officer 25%; Taser officer 10%.
+Cartel: Aggressive SMG 60%; Machete runner 30%; Armored grenadier 10%.
+Mercenaries: Suppressed pistol / smoke 60%; Suppressed SMG 30%; Mine planter 10%.
+SWAT Team: Assault operator 62%; Flash specialist 14%; Riot shield / Desert Eagle 11%; Precision marksman 9%; Armored LMG heavy 4%.
+These are base weights for each human selection, not independent guaranteed counts.
+Strong variants together are capped at max(1, floor(human count x 0.30)).
+Heavy cap: one below 20 humans, two at 20–25. Shield cap: max(1, floor(humans/8)).
+Mine planter cap: two. Once a cap is met, capped entries are removed and the
+remaining weights renormalize. No forced rare specialists. Common units stay common.
+K9: separate 10% event roll only on Police waves; exactly three dogs replace humans.
+Drones: separate 10% event roll from wave 15; maximum one active drone.
+Through wave 20, dogs and drones count inside the total. After wave 20, an optional
+single drone is additional to the SWAT human count (maximum 25 SWAT + 1 drone).
+
+COUNTS
+Waves 1–7: 7 total. Waves 8–13: 8. Waves 14–19: 9. Wave 20: 10.
+After 20: min(25, 10 + floor((wave - 20) / 2)) SWAT members.
+Waves 21: 10; 22–23: 11; 24–25: 12; 26–27: 13; 28–29: 14;
+30–31: 15; 32–33: 16; 34–35: 17; 36–37: 18; 38–39: 19;
+40–41: 20; 42–43: 21; 44–45: 22; 46–47: 23; 48–49: 24;
+50 onward: 25, permanently capped.
+
+WEAPONS
+Item | Base damage | Magazine | Base reserve | Shot interval | Reload
+AR-4 assault rifle | 28 | 30 | 90 | 0.13s | 1.9s
+Glock 19 | 30 | 15 | 30 | 0.24s | 1.4s
+Longshot sniper rifle | 115 | 5 | 15 | 1.25s | 2.8s
+BR-3 burst assault rifle | 31 | 24 | 72 | 0.48s burst cooldown + 0.18s; rounds 0.09s apart | 2.1s
+Double-barrel shotgun | 18 x 9 pellets | 2 | 22 | 0.33s | 2.3s
+Viper submachine gun | 19 | 32 | 128 | 0.075s | 1.65s
+RPG-7 | 260 | 1 | 1 | 1.5s | 4.2s
+Iron six revolver | 64 | 6 | 24 | 0.46s | 2.5s
+Headshots: 2.4x. Body armor reduces damage; headshots bypass armor.
+Full-damage range: AR-4 24m; pistol 18m; sniper 60m; burst rifle 30m;
+double barrel 7m; SMG 13m; revolver 27m. Damage falls beyond this range;
+minimum 12% for shotgun pellets and 35% for other bullets. ADS reduces spread.
+Machete: 65 damage / 2.35m reach / 0.70s cooldown / hit at 0.23s.
+Karambit: 34 damage / 1.65m reach / 0.34s cooldown / hit at 0.12s.
+RPG: 260 radial damage falling to zero over 8m; self damage up to 120.
+
+RESUPPLY
+At wave start, magazines reset to capacity; reserves reset, never accumulate.
+Reserve factor = max(1, count/8 x difficulty stage), rounded UP to a full magazine.
+Stage = 1 before wave 10, 1.12 at 10–14, 1.25 from 15 onward.
+At wave 50: AR-4 30+360; pistol 15+120; sniper 5+60; burst 24+288;
+double barrel 2+86; SMG 32+512; revolver 6+96. These are per-wave allocations.
+RPG always 1 loaded + 1 reserve through wave 35; 1 + 2 from wave 36.
+Equipment: two uses per wave, except boogie bomb: one. Swapping slots never refills.
+Clearing a wave awards credits at the 0.8-second threshold; the next wave starts
+after four seconds and performs one resupply. Health restores by 35 at wave start.
+Emergency regeneration: 3 HP/s after eight seconds without damage, capped at 50 HP;
+bandages and wave supplies restore health above that. Maximum health is 100.
+
+EQUIPMENT AND HAZARDS
+M67: 2s fuse, 180 radial damage over 7m, 1s use cooldown; cover blocks blast.
+Bandage: 35 HP after 2.4s, maximum 100 HP, two uses. Slot changes cancel healing
+without refund. Healing use slows movement and blocks firing.
+Flash: 1.1s player fuse, 7m radius, 5s knockdown; victims remain damageable.
+Survivors visually rise after the status expires. Nearby players get a short veil
+(2s from enemy flash / 1s from their own); NPC knockdown stays five seconds.
+Boogie: 1.1s fuse, 7m radius, 5s original procedural Gangnam-style horse-riding
+dance (crossed reins, alternating hops and lasso gesture). No song recording used.
+Flash/boogie need unobstructed effect reach. Stun and dance use independent expiry
+timestamps; reapplication extends the corresponding effect without locking AI.
+Smoke: 5.5m radius sphere / 10s lifetime / fades fully during final second.
+First entry into each cloud gives NPCs five seconds of blindness. Cloud obstruction
+continues to block NPC aim after blindness ends. Player vision has a dense veil
+inside the cloud; translucent sphere shells obscure it from outside.
+Enemy and player smoke use identical rules and affect ALL NPC factions and the
+player regardless of owner. No infrared immunity. Multiple cloud timers coexist.
+Natural maximum is eleven live clouds; defensive capacity is twelve, without
+evicting existing clouds. Blindness may outlast a cloud entered late in its life.
+Mine: 1.5s arming delay, 15 HP, shootable; 4.5m blast radius; up to 45 player damage;
+8s planting cooldown + 1s placement animation, global cap 6; no placement within
+3m of the player (planning requires 4m). Visible body and blinking armed light.
+Mines can chain react, do not count as living enemies, and clear at wave start.
+Drone: 65 HP, large hitbox, audible flight, accelerating warning at 7s, strike at
+10s for exactly 50% of max health. A strike resolves once and removes the drone.
+Temporary disabling effects delay its strike until recovery; it cannot attack blind.
+Taser: 1s charge, 7m activation range, 7 damage + 1.5s slow. Marksman: 1.3s laser
+telegraph, 22 damage, fixed target point that can be dodged. Cover interrupts both.
+Other enemy special throws have a 1s warning and 12s cooldown.
+
+ENEMY BALANCE
+Thugs: 65–75 HP, weakest aim. Police: 80–90 HP, better pistol aim; K9 55 HP.
+Cartel: 80–110 HP, faster melee and aggressive movement; grenadier 18% body armor.
+Mercenaries: 100–105 HP, suppression, smoke and mine placement; SMG 10% armor.
+SWAT: standard 110 HP/15% armor; flash 105/10%; shield 115 HP, 82% frontal
+torso damage reduction (exposed head, feet and flank); marksman 95 HP and slow;
+heavy 165 HP/35% armor, slow and imprecise sustained bursts. HP does not escalate
+forever. Recruit scales incoming damage to 75%; Veteran to 120%, plus aim changes.
+
+BUG FIXES
+Removed the production BREACH diagnostics, including live position references,
+throw controls and externally callable updates. Private tests inject their own API.
+Threshold-crossing wave reward fixes repeated per-frame resupply. Ammo reset is
+owned by wave spawning. Equipment has a shared independent cooldown and playing
+state guard. Invalid/nonfinite player positions restore to a last valid safe point.
+Camera: rejects nonfinite or extreme pointer deltas and post-lock spikes, uses
+smooth FOV/eye transitions and an analytic damped weapon spring. Mouse outliers
+were a plausible code-level source; the reported random twitch could not be
+reproduced in the real browser, so the visual camera fix is not yet verified.
+
+VERIFICATION / LIMITS
+51 tests pass against the actual game closure in a Node VM with mocked WebGL.
+Includes 10,000 wave plans; all firearms/melee; crate odds/award/duplicates; save
+roundtrip; category restrictions; swap/resupply/cooldown/paused controls; input
+handlers; invalid coordinates; timings/recovery/overlap; K9/drone completion;
+special-attack dodging; shield/cover; mines/chains; all variant navigation/damage;
+camera numeric stability; ragdolls; 25-SWAT stress with twelve smoke clouds.
+Standalone HTML exactly matches dist JavaScript/CSS. Production inventory checks
+pass, including absent mutation diagnostics and exact menu text.
+These are simulation checks, NOT a completed visual or manual gameplay test.
+Opera GX Computer Use was blocked because the runtime could not determine the
+current browser URL confidently enough to enforce policy. No further browser
+input was attempted. GPU rendering, real audio playback, mouse feel, visual dance
+recognizability, animation polish, actual FPS and sustained wave enjoyment remain
+unverified. QA-arsenal.html is an isolated local harness for those checks; it uses
+an in-memory collection and is excluded from production files.
+All new models, choreography and sounds are original procedural implementations,
+with no downloaded/licensed third-party assets. Sounds are synthesized, including
+a synthetic NPC hurt grunt; no recorded actor voices or mocap assets are included.
+The game remains single-player and browser-local. No multiplayer server exists;
+browser-local saves are not a server-authoritative economy or anti-cheat boundary.
+No hosted deployment or remote repository update was performed in this task.

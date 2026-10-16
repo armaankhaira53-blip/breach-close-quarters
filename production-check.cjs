@@ -14,6 +14,9 @@ function publicFiles(directory, prefix = '') {
 }
 assert.deepEqual(publicFiles(root).sort(), expected, 'Review unexpected public files before deploying');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const runtime = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
+assert(!/window\.(?:BREACH|__qa)\s*=|\beval\s*\(/.test(runtime), 'Production must not expose mutation-capable diagnostics');
+assert(html.includes('Created and owned by Arkh_53') && html.includes('>Sensitivity <'), 'Menu label and ownership credit');
 const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(match => match[1]);
 for (const ref of references) {
   assert(expected.includes(ref), 'Unexpected or external asset reference');

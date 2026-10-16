@@ -1,65 +1,38 @@
-BREACH / CLOSE QUARTERS
+BREACH / ARSENAL UPDATE 03
+Created and owned by Arkh_53
 
 PLAY
-Open BREACH.html in a desktop browser with WebGL enabled, then click DEPLOY.
-The game is self-contained and can run offline. No installation is needed.
-Mouse and keyboard are required. Press Escape to release your mouse and pause.
+Open BREACH.html in Opera GX (Ctrl+O, select the file), then click DEPLOY.
+Desktop keyboard/mouse and WebGL required. Runs offline without dependencies.
 
 CONTROLS
-WASD: move
-Mouse: look
-Left click: shoot (hold for automatic rifle fire)
-Right click: aim down sights
-Shift: sprint
-C while sprinting: slide
-Space: jump
-R: reload
-1: AR-4 assault rifle (30 rounds)
-2: Glock 19 sidearm (15 rounds; click per shot)
-3: select fragmentation grenade; left click to throw
-G: quick-throw grenade
-Escape: pause
+WASD move; mouse look; left click attack/use; right click aim; R reload.
+Shift sprint; C toggle crouch; C while sprinting slide; Space jump.
+1/2/3 select Primary/Secondary/Equipment; mouse wheel cycles those slots.
+G uses equipped equipment. I opens the scrollable inventory/shop. Escape pauses.
 
-GAMEPLAY
-Survive increasing waves in a compact 36 x 44 metre industrial arena.
-Enemies use sight and sound, flank, strafe, seek cover, peek, and evade grenades.
-They fire aimed bursts, avoid firing through allies, and reload their weapons.
-Headshots deal extra damage. Cover blocks bullets and grenade damage.
-Grenades bounce and explode after a short fuse; close explosions hurt you too.
-Enemies and the player collapse into jointed physics ragdolls on death.
-Blood particles, muzzle flashes, bullet tracers, shell ejection, weapon recoil,
-reload movement, synthesized sound, and hit markers provide combat feedback.
-The tactical update adds spring-based weapon recoil, aim-linked bullet recoil,
-weapon sway, animated sidearm slides, and more detailed weapons and soldiers.
-The arena has directional shadows, procedural surface shading and sky,
-container door hardware, drainage grates, fencing, and additional trim.
-Sprint uses stamina. Sliding consumes stamina and briefly lowers your view.
-Health regenerates after five seconds without damage. Cleared waves restore
-health and replenish ammunition and grenades. The death screen lets you restart.
-Choose Recruit, Regular, or Veteran and set mouse sensitivity before deployment.
+COLLECTION
+Shop Info shows all fifteen rewards and exact odds. Crates cost earned credits.
+Three slots only, one per category. Owned items stay owned when replaced.
+During a run, loadout changes apply at the next wave; swaps never refill supplies.
+Progress saves in this browser. Use Armory > Save and restore collection to export
+before moving the file or changing browsers. Import merges rather than deletes.
 
 FILES
-BREACH.html: single-file offline game
-dist/: editable HTML, CSS, and JavaScript sources
-check.cjs: Node simulation checks
-build.cjs: rebuild BREACH.html from dist/ using Node.js
+BREACH.html: updated self-contained game.
+dist/: maintained HTML/CSS/JavaScript source (only these files are served).
+BALANCE-AND-TESTS.txt: exact probabilities, wave rules, balance, tests and limitations.
+build.cjs: synchronizes the standalone HTML. check.cjs + qa-tests.cjs: simulation tests.
+production-check.cjs: verifies public assets and absence of diagnostic controls.
+Run npm run build (Node 24) to rebuild and run all checks.
+Local development copies also retain build-qa.cjs, the isolated QA-arsenal.html,
+and backup-2026-10-15/. These local-only files are excluded from the public repo.
+Never place a diagnostic harness in dist/.
 
-VERIFICATION
-All 22 simulation checks passed, including flanking, cover selection, grenade
-evasion, AI movement, recoil recovery, and the existing combat controls.
-The checks use a mocked WebGL context; they do not verify real GPU rendering.
-The upgraded arena and weapon were inspected in Opera GX. Final graphical QA
-after sky and AI refinements remains incomplete because Computer Use was stopped.
-Standalone HTML/source synchronization is checked by check.cjs.
-Vercel preparation updated 2026-10-14. Run npm run build to rebuild the
-standalone file, run the 22 simulation checks, and validate public assets.
-Only dist/ is served. No runtime secrets, database, backend, or package
-dependencies are required. Node 24 is used for build-time checks only.
-
-PUBLIC SOURCE
-The repository is intended to be public. Local deployment records, credentials,
-environment files, backups, and tooling metadata are excluded by .gitignore.
-Ignore rules do not remove files already tracked by Git or erase Git history.
-Never put secrets in dist/ or BREACH.html: browser game code is public.
-
-This is an original stylized browser FPS prototype, with no Call of Duty assets.
+STATUS
+51 simulation checks pass, including weapon/equipment behavior and 10,000 wave plans.
+Package checks and standalone synchronization pass. Real-browser playtesting was
+blocked by the Computer Use runtime's browser-URL verification failure. Rendering,
+sound playback, dance recognizability, camera feel and real FPS remain unverified.
+Custom sounds and models are procedural. The NPC hurt voice is synthetic.
+Single-player only; no server or multiplayer. No hosted publication in this task.
