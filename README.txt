@@ -123,3 +123,5 @@ RPG supply stays at 9 per wave. Ordinary blast damage and all other weapons are 
 New simulation checks cover all maps at 30/60/144 FPS, speed/reset, damage, pause/death,
 ceiling clearance, elevated landings/relaunches, boundaries and thin-wall impacts.
 Real-browser movement feel remains unverified; no desktop takeover was performed.
+
+RPG reload time is now 1.5 seconds; nine-rocket supplies and rocket jumping are unchanged.

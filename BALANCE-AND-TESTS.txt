@@ -71,7 +71,7 @@ Longshot sniper rifle | 115 | 5 | 15 | 1.25s | 2.8s
 BR-3 burst assault rifle | 31 | 24 | 72 | 0.48s burst cooldown + 0.18s; rounds 0.09s apart | 2.1s
 Double-barrel shotgun | 18 x 9 pellets | 2 | 22 | 0.33s | 2.3s
 Viper submachine gun | 19 | 32 | 128 | 0.075s | 1.65s
-RPG-7 | 260 | 1 | 8 | 1.5s | 4.2s
+RPG-7 | 260 | 1 | 8 | 1.5s | 1.5s
 Iron six revolver | 64 | 6 | 24 | 0.46s | 2.5s
 Headshots: 2.4x. Body armor reduces damage; headshots bypass armor.
 Full-damage range: AR-4 24m; pistol 18m; sniper 60m; burst rifle 30m;
@@ -236,7 +236,7 @@ plus a swept travel path to avoid passing through enemies during windup. Contact
 starts at 0.12s and remains active until 0.24s or the first hit. Visibility is checked
 from both the swept position and current position; walls and vertical reach still apply.
 No bonus for misses, blocked/out-of-range hits, other weapons or a hit after sliding ends.
-RPG: 9 per wave (1 loaded + 8 reserve), still one-shot magazine and 4.2-second reload.
+RPG: 9 per wave (1 loaded + 8 reserve), still one-shot magazine and 1.5-second reload.
 Magazine components now share one placement, and the support hand follows the same
 extraction path. Magazine clears the receiver before moving sideways. All four long-gun
 magazines have correctly sized rib details; front sights now have supporting posts.
@@ -338,9 +338,14 @@ Launch cancels sliding/crouching when standing clearance exists; low ceilings bl
 Ceilings stop upward travel and solid roofs/cover catch descending players. Landing,
 death, menu exit, practice reset, invalid-position recovery and admin flight clear the
 boost. Pause freezes it. Additional blasts cannot stack launch impulses while boosted.
-RPG remains 1 loaded + 8 reserve, 4.2s reload. Save data and other weapon balance unchanged.
+RPG remains 1 loaded + 8 reserve, 1.5s reload. Save data and other weapon balance unchanged.
 129 automated simulation checks pass, eight new rocket checks covering all four maps
 at 30/60/144 FPS, ammunition use, boost movement/reset, each difficulty, single-impact
 damage/launch, exclusion cases, ceilings, roof landings/relaunches, death/menu/pause,
 invalid-position recovery, arena limits and thin-wall collision. Mocked WebGL only;
 manual Opera gameplay, visual movement feel and real GPU performance remain unverified.
+
+RPG RELOAD ADJUSTMENT
+Reload reduced from 4.2 to 1.5 seconds. Reload animation and handling sounds follow
+the weapon duration. Existing ammo-conservation check now verifies the chamber stays
+empty at 1.499 seconds and refills at 1.501 seconds, consuming exactly one reserve.
