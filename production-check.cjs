@@ -18,6 +18,7 @@ const runtime = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
 assert(!/window\.(?:BREACH|__qa)\s*=|\beval\s*\(/.test(runtime), 'Production must not expose mutation-capable diagnostics');
 assert(html.includes('Created and owned by Arkh_53') && html.includes('>Sensitivity <'), 'Menu label and ownership credit');
 assert(html.includes('Co-owner Khibanyan'), 'Co-owner credit');
+assert(!/stamina|slideCD/.test(runtime) && !/id="stamina"|class="stamina"/.test(html), 'Unlimited movement has no stamina bar, exhaustion or slide cooldown');
 assert(!/fetch\s*\(|WebSocket|networkAction|initializeNetworkUI/.test(runtime), 'Single-player release has no multiplayer connections');
 assert(!/createParty|joinParty|partyCode|leaderboardButton/.test(html), 'No canceled multiplayer or worldwide-ranking controls');
 const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(match => match[1]);
