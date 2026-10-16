@@ -1,5 +1,9 @@
 # BREACH project notes
 
+- For expanded crate tables, compare the random roll against cumulative fractional thresholds. Flooring a floating-point product can select the previous item at an exact boundary; test every interval start and end and require a 10,000 total.
+- Lifetime waves must be recorded on the final credited enemy death before a same-frame player death can interrupt the wave timer. Keep the wave identifier guard and test immediate death, menu exit, and fresh-session reload. Personal Stats should show current normal-profile values if a storage write fails; never overwrite unreadable save bytes with defaults.
+- The Arsenal Update 11 does not add authentication. Aanav2453 and Khibanyan admin grants are pending an identity-provider/backend decision. Never grant them privileges from the editable callsign. Arkh_53 remains the pre-existing public, unsaved sandbox; its invincibility is a sandbox test capability, not verified administrator access.
+
 - Horizontal player and navigation collision checks must exclude the floor plane. After editing collision code, run check.cjs and verify movement and a route across the arena.
 - Read and write source files explicitly as UTF-8. Windows PowerShell default decoding can corrupt multiplication signs and middle dots; inspect the HUD text after scripted replacements.
 - The game uses a self-contained WebGL renderer, with no external dependencies. Keep BREACH.html synchronized with dist/index.html, dist/style.css, and dist/game.js for local delivery.

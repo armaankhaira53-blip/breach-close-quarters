@@ -1,366 +1,145 @@
-BREACH / COMBAT UPDATE 10 - BALANCE AND VERIFICATION
-Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
+BREACH / ARSENAL UPDATE 11 - BALANCE AND VERIFICATION
+2026-10-16
 
 IMPLEMENTED
-15 permanent unlocks; three category-validated equipped slots; scrollable collection;
-mouse-wheel selection; saved credits/ownership/loadout with backup export and merge;
-three-second crate roll with reward fixed and saved before animation; Info odds table.
-Every wave resets limited ammunition and equipment. Choose your loadout from the
-main menu; replacing an equipped item never removes it from the collection.
-All five factions, their requested variants, K9 events, drones, mines, temporary
-effects, procedural models/animations/synthesized sounds, crouch/slide, and menu credit.
-Arena expanded from 36 x 44 to 42 x 50 metres with connected outer lanes, six new
-cover positions and a crawl-through canopy. Existing cover AI, navigation, recoil,
-hit markers, tracers, physics ragdolls, materials, sky and directional shadows retained.
+28 permanent catalog items (13 new), still exactly one Primary, one Secondary and
+one Equipment slot. Category/ownership validation, shared ammunition pools, existing
+unlocks, save key breach.collection.v1, unknown saved fields and backup merge retained.
+All new items have local procedural meshes, animations, synthesized sounds and bounded
+effects. Supplies reset on wave spawn; selecting or swapping never generates supplies.
+RPG remains 1 loaded + 8 reserve, 1.5-second reload and 2-second shot cooldown.
 
-CRATE REWARDS — EXACT UNCONDITIONAL ODDS
+PRIMARY BALANCE (base reserves scale with the existing wave resupply formula)
+Flamethrower: 6 damage every 0.10s, 6m range, 100 fuel + 100 base reserve; 3.2s reload.
+Tactical Crossbow: 78 body / 156 head, 65m/s bolt with slight gravity, 1 + 18 bolts;
+1.8s reload. Swept projectile collision and centered reflex aiming.
+LMG: 24 damage, 0.085s fire interval, 75 + 150 rounds, 4.2s reload; crouch and
+hold fire for a full 1.0s before any shot. Mechanism accelerates during spin-up.
+Movement locks during spin-up/firing. Release, uncrouch, switch, reload, pause,
+death and menu exit release the lock; each new activation requires another spin-up.
+Nerf Gun: blue/orange toy; 12 + 48 foam darts, 17m/s, 1.6s reload; ZERO body/head damage.
+Pump Shotgun: 5 shells + 25 reserve; nine 15-damage pellets, 8m effective range,
+0.95s shot/pump cycle, 3.4s magazine refill. Very strong recoil (6.5 spring impulse,
+0.32 kick, 9x ordinary recoil accumulation); moving foregrip and support hand.
+
+SECONDARY BALANCE
+Mini Uzi: 14 damage, 0.065s fire interval, 24 + 72 rounds, 10m effective range,
+1.8s reload; higher recoil/spread than the rifle.
+Chainsaw: 14 contact damage per 0.22s cycle, 0.16s contact delay, 1.5m reach,
+60 + 60 fuel, 2.6s refuel. Attacks require fuel and a connecting contact.
+Sawed-Off Shotgun: 2 + 16 shells, eight 16-damage pellets, 4m effective range,
+0.50s shot interval, 2.4s reload; steep range falloff.
+Fire Axe: 95 damage, 2m reach, 1.10s windup and 1.90s full cycle. Impact matches
+the overhead swing. No rapid input bypass; switching cancels pending contact.
+
+EQUIPMENT
+Sticky Bomb: 2 uses, 2.5s fuse from throw, 5m explosion radius, max 145 damage with
+radial falloff/cover. First swept surface contact sticks; NPC local offsets follow
+translation and rotation. A dead host leaves it at the last attachment location.
+Molotov: 2 uses, 4m impact radius, immediate 30 damage then 4 damage/sec for exactly
+10 seconds (40 total burn before armor). Fire follows affected living enemies;
+overlap refreshes duration, never stacks burn DPS. Flames clean on expiry/death.
+Throwing Knives: 4 uses, 22 damage on body OR head, 28m/s, 0.65s cooldown.
+C4: 3 uses / at most 3 active charges. G (or left click in equipment slot) places
+on a surface within 3m. V detonates any placed charges, including only 1 or 2,
+from any weapon slot. Max 190 damage, 6m radius, falloff/cover; no refund on detonation.
+HUD and shop supply rules state the controls and active count. Paused use is rejected.
+
+OTHER COMBAT/MODEL FIXES
+Sniper pierces sorted unique enemies along the pre-recoil shot ray, stopping at solid
+map geometry. Base body damage is 90; previous 115 x 2.4 = 276 headshot is retained
+explicitly. Existing long-distance falloff and armor/shield rules remain.
+K9: one local skeleton for body, articulated legs/paws, muzzle, ears, harness, eyes
+and tail. Shared heading/knockdown/hurt/attack/death transforms and matching bounds;
+a whole-body death fall replaces disappearing into particles. Corpse cap 12 / 12s life.
+Glock and revolver: separate open sights, centered reflex views with foreground
+geometry hidden during aim, pre-recoil shot ray, normal return to hip view.
+RPG: removed the two side-mounted box/button parts. Tube, rocket, grips and reload
+attachments preserved. Main-menu wave-credit explanation removed; compact difficulty
+summary remains. Actual payouts and in-wave reward notifications remain unchanged.
+Nuke (existing public sandbox): visible falling physical model, impact-triggered
+map flash and large fireball with synthesized explosion audio. Clears all enemies
+as before. Fireball lasts 3s; flash decays; menu/death clears state and normal lighting.
+Invincibility (sandbox only): shared player damage guard, visible state, reversible
+toggle, resets on death/redeploy/menu. Sandbox actions never write the normal save.
+
+DIFFICULTY ADJUSTMENTS
+Recruit incoming damage multiplier: 0.75 -> 0.69; spread 1.35 -> 1.458.
+Regular incoming damage multiplier: 1.00 -> 0.92; spread 1.00 -> 1.08.
+Veteran incoming damage multiplier: 1.25 -> 1.15; spread 0.72 -> 0.7776.
+All modes: 8% lower scaled incoming damage, 8% wider enemy firearm spread, 6% longer
+post-attack cycle pauses (melee and firearm bursts; intra-burst cadence unchanged).
+Movement speed, faction progression, roster/count scaling, specialist frequencies,
+credit multipliers and credit rewards are unchanged. Drone strikes remain the existing
+50% max health; rocket-jump cost stays 10. Harder modes remain numerically distinct.
+
+STATISTICS AND SAVES
+Total Waves increments once at final credited elimination, before same-frame death;
+wave identifier guard prevents timer/menu duplicates. Total Eliminations increments
+once per player-credited enemy death; enemy-caused explosions do not award eliminations.
+Practice/sandbox do not write combat progress. Personal Stats reads the current normal
+profile so failed disk writes cannot hide earned in-session statistics. Unreadable save
+bytes are preserved instead of silently overwritten by defaults. Fresh simulation
+sessions reload the same valid collection/totals/unknown fields.
+Existing game saves are browser-local; moving origin/browser requires the existing
+export/merge backup controls. No account/cloud migration or reset was performed.
+
+VERIFICATION
+162 checks pass via node check.cjs, including 132 baseline checks plus new arsenal,
+edge-case and fresh-session checks. Uses mocked WebGL and isolated test storage.
+Checks cover category/odds intervals, supply conservation, 30/60/144 FPS LMG timing,
+pump, axe, harmless darts, swept bolts/sticky collision, moving attachment, exact
+burn duration, C4 1/2/3 detonation, sniper 90/276/cover/deduplication, sandbox isolation,
+invincibility damage guard, nuke delay/cleanup, K9 joints/poses, optics, save failures,
+fresh-session persistence, and waves 1/5/10/15/20/50 in each difficulty.
+Production asset/syntax/standalone synchronization and credential-pattern checks pass.
+Software model previews inspected for all new items, RPG/pistols, and K9 walk/attack/
+knockdown/death. These use simplified shading and are NOT real WebGL gameplay tests.
+
+UNFINISHED / NEEDS CLARIFICATION
+- Authoritative admin access for Aanav2453 and Khibanyan is NOT implemented. This is a
+  static offline-capable single-player game with editable callsigns, no account server,
+  no verified permanent player IDs and no public leaderboard. An identity provider and
+  trusted backend must be selected before secure grants can be made. The existing
+  Arkh_53 public unsaved sandbox is preserved; it is not authenticated administration.
+- Invincibility is tested in that existing isolated sandbox only, not a server-authorized
+  admin feature. No display-name authorization was added for the requested accounts.
+- No catalog item is named Block. Glock 19 and Iron six revolver were individually fixed;
+  Block remains unresolved rather than changing an unrelated weapon.
+- Global leaderboard consistency cannot be tested because worldwide rankings are not
+  implemented. Multiplayer remains canceled. Sandbox progress stays excluded from saves.
+- Opera GX Computer Use stopped before gameplay because it could not determine the
+  current URL confidently enough to enforce policy. No further desktop interaction was
+  attempted. Browser graphics/audio/input, cross-session browser persistence, menu layout,
+  perceived early/late-wave difficulty and live FPS are NOT verified by this update.
+
+CRATE REWARDS - EXACT UNCONDITIONAL ODDS (sum 100.00%; no pity/modifiers)
 Item | Category | Rarity | Probability
-AR-4 assault rifle | Primary | Common | 14.00%
-Glock 19 | Secondary | Common | 16.00%
-M67 fragmentation grenade | Equipment | Uncommon | 9.00%
-Longshot sniper rifle | Primary | Epic | 3.00%
-BR-3 burst assault rifle | Primary | Rare | 6.00%
-Double-barrel shotgun | Primary | Rare | 5.00%
-Viper submachine gun | Primary | Uncommon | 9.00%
+AR-4 assault rifle | Primary | Common | 6.00%
+Glock 19 | Secondary | Common | 6.50%
+M67 fragmentation grenade | Equipment | Uncommon | 5.50%
+Longshot sniper rifle | Primary | Epic | 2.50%
+BR-3 burst assault rifle | Primary | Rare | 4.00%
+Double-barrel shotgun | Primary | Rare | 3.50%
+Viper submachine gun | Primary | Uncommon | 5.00%
 RPG-7 | Primary | Mythic | 0.10%
-Iron six revolver | Secondary | Rare | 5.00%
-Machete | Secondary | Uncommon | 8.50%
-Karambit | Secondary | Rare | 5.00%
-Field bandage | Equipment | Common | 10.00%
-Flashbang | Equipment | Rare | 4.00%
-Boogie bomb | Equipment | Epic | 2.00%
-Smoke bomb | Equipment | Uncommon | 3.40%
-Total: 100.00%. RPG: 0.10%, or 1 in 1,000 independent rolls; no guarantee/pity.
-One reward per 300-credit crate. Duplicate: refund 120 credits, retain ownership.
-No cash purchases. New collection starts with 600 credits and AR-4/Glock/M67.
-A cleared wave pays 90-420 credits once, by difficulty and faction (see below). A reload during a roll retains the awarded item;
-the shop shows the last saved reward. The reel shows illustrative cycling items,
-then reveals the exact item awarded; it does not conduct a second random selection.
-
-WAVE SCHEDULE AND VARIANT WEIGHTS
-Waves 1–4 Street Thugs; 5–9 Police; 10–14 Cartel; 15–19 Mercenaries;
-wave 20 onward SWAT is the only human faction.
-Street Thugs: Bat thug 55%; Pistol thug 35%; SMG thug 10%.
-Police Officers: Pistol officer 65%; Pump shotgun officer 25%; Taser officer 10%.
-Cartel: Aggressive SMG 60%; Machete runner 30%; Armored grenadier 10%.
-Mercenaries: Suppressed pistol / smoke 60%; Suppressed SMG 30%; Mine planter 10%.
-SWAT Team: Assault operator 62%; Flash specialist 14%; Riot shield / Desert Eagle 11%; Precision marksman 9%; Armored LMG heavy 4%.
-These are base weights for each human selection, not independent guaranteed counts.
-Strong variants together are capped at max(1, floor(human count x 0.30)).
-Heavy cap: one below 20 humans, two at 20–25. Shield cap: max(1, floor(humans/8)).
-Mine planter cap: two. Once a cap is met, capped entries are removed and the
-remaining weights renormalize. No forced rare specialists. Common units stay common.
-K9: separate 10% event roll only on Police waves; exactly three dogs replace humans.
-Drones: separate 10% event roll from wave 15; maximum one active drone.
-Through wave 20, dogs and drones count inside the total. After wave 20, an optional
-single drone is additional to the SWAT human count (maximum 25 SWAT + 1 drone).
-
-COUNTS
-Waves 1–7: 7 total. Waves 8–13: 8. Waves 14–19: 9. Wave 20: 10.
-After 20: min(25, 10 + floor((wave - 20) / 2)) SWAT members.
-Waves 21: 10; 22–23: 11; 24–25: 12; 26–27: 13; 28–29: 14;
-30–31: 15; 32–33: 16; 34–35: 17; 36–37: 18; 38–39: 19;
-40–41: 20; 42–43: 21; 44–45: 22; 46–47: 23; 48–49: 24;
-50 onward: 25, permanently capped.
-
-WEAPONS
-Item | Base damage | Magazine | Base reserve | Shot interval | Reload
-AR-4 assault rifle | 28 | 30 | 90 | 0.13s | 1.9s
-Glock 19 | 30 | 15 | 30 | 0.24s | 1.4s
-Longshot sniper rifle | 115 | 5 | 15 | 1.25s | 2.8s
-BR-3 burst assault rifle | 31 | 24 | 72 | 0.48s burst cooldown + 0.18s; rounds 0.09s apart | 2.1s
-Double-barrel shotgun | 18 x 9 pellets | 2 | 22 | 0.33s | 2.3s
-Viper submachine gun | 19 | 32 | 128 | 0.075s | 1.65s
-RPG-7 | 260 | 1 | 8 | 2.0s | 1.5s
-Iron six revolver | 64 | 6 | 24 | 0.46s | 2.5s
-Headshots: 2.4x. Body armor reduces damage; headshots bypass armor.
-Full-damage range: AR-4 24m; pistol 18m; sniper 60m; burst rifle 30m;
-double barrel 7m; SMG 13m; revolver 27m. Damage falls beyond this range;
-minimum 12% for shotgun pellets and 35% for other bullets. ADS reduces spread.
-Machete: 25 damage / 1.65m reach / 1.00s cooldown / hit at 0.23s.
-Karambit: 60 damage / 1.9m reach / 0.34s cooldown / hit at 0.12s.
-RPG: 260 radial damage falling to zero over 8m; ordinary self damage up to 120.
-Qualifying rocket-jump blasts cost 10 health instead (see Update 09 below).
-
-RESUPPLY
-At wave start, magazines reset to capacity; reserves reset, never accumulate.
-Reserve factor = max(1, count/8 x difficulty stage), rounded UP to a full magazine.
-Stage = 1 before wave 10, 1.12 at 10–14, 1.25 from 15 onward.
-At wave 50: AR-4 30+360; pistol 15+120; sniper 5+60; burst 24+288;
-double barrel 2+86; SMG 32+512; revolver 6+96. These are per-wave allocations.
-RPG always 1 loaded + 8 reserve on every wave: 9 total rockets, independent of wave size.
-Equipment: two uses per wave, except boogie bomb: one. Swapping slots never refills.
-Clearing a wave awards credits at the 0.8-second threshold; the next wave starts
-after four seconds and performs one resupply. Health restores by 35 at wave start.
-Emergency regeneration: 3 HP/s after eight seconds without damage, capped at 50 HP;
-bandages and wave supplies restore health above that. Maximum health is 100.
-
-EQUIPMENT AND HAZARDS
-M67: 2s fuse, 180 radial damage over 7m, 1s use cooldown; cover blocks blast.
-Bandage: 35 HP after 2.4s, maximum 100 HP, two uses. Slot changes cancel healing
-without refund. Healing use slows movement and blocks firing.
-Flash: 1.1s player fuse, 7m radius, 5s knockdown; victims remain damageable.
-Survivors visually rise after the status expires. Nearby players get a short veil
-(2s from enemy flash / 1s from their own); NPC knockdown stays five seconds.
-Boogie: 1.1s fuse, 7m radius, 5s original procedural Gangnam-style horse-riding
-dance (crossed reins, alternating hops and lasso gesture). No song recording used.
-Flash/boogie need unobstructed effect reach. Stun and dance use independent expiry
-timestamps; reapplication extends the corresponding effect without locking AI.
-Smoke: 5.5m radius sphere / 10s lifetime / fades fully during final second.
-First entry into each cloud gives NPCs five seconds of blindness. Cloud obstruction
-continues to block NPC aim after blindness ends. Player vision has a dense veil
-inside the cloud; translucent sphere shells obscure it from outside.
-Enemy and player smoke use identical rules and affect ALL NPC factions and the
-player regardless of owner. No infrared immunity. Multiple cloud timers coexist.
-Natural maximum is eleven live clouds; defensive capacity is twelve, without
-evicting existing clouds. Blindness may outlast a cloud entered late in its life.
-Mine: 1.5s arming delay, 15 HP, shootable; 4.5m blast radius; up to 45 player damage;
-8s planting cooldown + 1s placement animation, global cap 6; no placement within
-3m of the player (planning requires 4m). Visible body and blinking armed light.
-Mines can chain react, do not count as living enemies, and clear at wave start.
-Drone: 65 HP, large hitbox, audible flight, accelerating warning at 7s, strike at
-10s for exactly 50% of max health. A strike resolves once and removes the drone.
-Temporary disabling effects delay its strike until recovery; it cannot attack blind.
-Taser: 1s charge, 7m activation range, 7 damage + 1.5s slow. Marksman: 1.3s laser
-telegraph, 22 damage, fixed target point that can be dodged. Cover interrupts both.
-Other enemy special throws have a 1s warning and 12s cooldown.
-
-ENEMY BALANCE
-Thugs: 65–75 HP, weakest aim. Police: 80–90 HP, better pistol aim; K9 55 HP.
-Cartel: 80–110 HP, faster melee and aggressive movement; grenadier 18% body armor.
-Mercenaries: 100–105 HP, suppression, smoke and mine placement; SMG 10% armor.
-SWAT: standard 110 HP/15% armor; flash 105/10%; shield 115 HP, 82% frontal
-torso damage reduction (exposed head, feet and flank); marksman 95 HP and slow;
-heavy 165 HP/35% armor, slow and imprecise sustained bursts. HP does not escalate
-forever. Recruit scales incoming damage to 75%; Veteran to 125%, plus aim and movement changes.
-
-BUG FIXES
-Removed the production BREACH diagnostics, including live position references,
-throw controls and externally callable updates. Private tests inject their own API.
-Threshold-crossing wave reward fixes repeated per-frame resupply. Ammo reset is
-owned by wave spawning. Equipment has a shared independent cooldown and playing
-state guard. Invalid/nonfinite player positions restore to a last valid safe point.
-Camera: rejects nonfinite or extreme pointer deltas and post-lock spikes, uses
-smooth FOV/eye transitions and an analytic damped weapon spring. Mouse outliers
-were a plausible code-level source; the reported random twitch could not be
-reproduced in the real browser, so the visual camera fix is not yet verified.
-
-COMBAT UPDATE 05 / DIFFICULTY AND REWARDS
-Difficulty | Reward multiplier | Incoming damage | Enemy speed | Aim spread
-Recruit | 0.75 | 0.75 | 0.90 | 1.35
-Regular | 1.00 | 1.00 | 1.00 | 1.00
-Veteran | 1.50 | 1.25 | 1.10 | 0.72
-Smaller spread is more accurate. Drone strikes remain exactly 50% maximum HP.
-Faction base credits: Thugs 120, Police 160, Cartel 200, Mercenaries 240, SWAT 280.
-Recruit payouts: 90 / 120 / 150 / 180 / 210.
-Regular payouts: 120 / 160 / 200 / 240 / 280.
-Veteran payouts: 180 / 240 / 300 / 360 / 420.
-Completion uses the cleared wave ID plus threshold crossing, and menu exit settles
-an already-cleared wave once. Exiting an incomplete wave keeps kills, not a wave payout.
-Personal statistics persist beside the existing collection; older saves default new
-lifetime counters to zero without replacing ownership, credits or unknown fields.
-
-MODELS, SCOPES, SOUNDS AND MOVEMENT
-All fifteen items retain the detailed beveled component meshes, material groups,
-metal/cloth/rubber/glass shading, arena trim and capped graphics quality levels.
-Player gloves include cuffs, sleeves and wrist details. Civilian, police and tactical
-uniforms have distinct clothes and fittings. One posed, dressed actor handles walking,
-combat, horse-riding Gangnam-style dance, flash knockdown/recovery and death. Armor,
-shield, pouches, packs, hats and face parts remain attached through full root rotations.
-Boogie uses one spherical tiled shell instead of intersecting decorative solids.
-Revolver cylinder, shotgun hinge and grenade lever use their correct local pivots.
-Karambit equips with a 360-degree ring spin over 0.72 seconds. F spins twice over 1.2s.
-Attack cancels inspect and retains 60 damage / 1.9m reach / 0.34s cooldown.
-Rifle, burst and SMG reflex sights use open frames and a centered red dot; sniper has
-an open scope tube, circular aperture and crosshair. At aim blend >0.55, foreground
-weapon geometry is suppressed. Zoom uses 49-degree reflex / 28-degree sniper FOV.
-All scoped rays use the pre-recoil aim direction; aim and FOV blend smoothly.
-Firing sounds layer noise crack, bass, muzzle body, mechanical action and tail.
-Suppressed pistol/SMG have separate muted profiles. Reloads sequence handling sounds.
-Distance rolls off as 0.8/(1+(distance/9)^2), with low-pass filtering and stereo pan;
-sources beyond 55m are silent. Limits: 20 world / 28 total voices, master gain 0.75,
-compressor threshold -18dB / ratio 6. Three cached variations reduce repetition.
-These are original synthesized sounds, including synthetic NPC grunts, not recordings.
-C with sprint intent follows only the slide branch, even when airborne. Sprinting from crouch requires headroom. Slide and crouch are exclusive;
-stationary Shift+C still crouches. Slide exit under cover remains crouched.
-Pause now has Main Menu / End Run. Run cleanup clears controls, effects and camera state.
-
-SINGLE-PLAYER SCOPE AND SANDBOX
-Multiplayer and party codes were canceled and removed at the owner's request.
-No network gameplay, paid game server, external player account or leaderboard API remains.
-Four personal statistics are shown honestly as this-device records, not worldwide ranks.
-Exactly Arkh_53 enables a public local sandbox: unlimited crate credits, nuke, flight,
-invisibility, wave selection 1-999, unlock all, and five-second mass dance. Each ability
-has an enable checkbox. Anyone entering the name gets it, as explicitly requested;
-this is not secure identity verification. Sandbox saves/export/import cannot overwrite
-normal progress. Changing to a normal name reloads the legitimate local collection.
-
-VERIFICATION / LIMITS
-132 automated checks pass against the actual maintained game closure with mocked WebGL.
-Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
-duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
-input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
-all four scopes hiding weapon geometry, dressed actor poses through dance/flash/death,
-finite attached transforms, distinct bounded audio waveforms, once-only difficulty/faction
-rewards, menu cleanup, personal stat persistence and sandbox save/action isolation.
-Includes all enemy variants, K9/drone completion, special attacks, smoke/effect overlap,
-mines/chains and 25-SWAT stress. Geometry: 128 cached buffers / 1,273,680 finite vertices;
-unit normals pass and rendering does not allocate additional mesh buffers.
-The standalone HTML exactly matches maintained CSS/JS. Production scans confirm only
-three public assets, correct menu credits/Sensitivity, no mutation diagnostic API,
-no multiplayer connections and no canceled party/global-ranking controls.
-These checks do not verify GPU shader rendering, subjective sound quality, dance
-recognizability, actual frame rate or human playability. Opera GX testing was deferred
-because the owner is using the computer and asked work to continue uninterrupted.
-No photorealistic scanned models, recorded voices or mocap. These remain procedural art.
-Single-player local saves can be edited in DevTools and are not an anti-cheat boundary.
-GitHub main is the source target and Vercel serves the static dist assets.
-
-FUTURE FEATURE
-Worldwide rankings are retained on the roadmap, as requested. They are not enabled
-in this single-player release and will need trusted backend validation and hosting.
-Multiplayer and party codes remain canceled.
-
-MOBILITY UPDATE 06.1
-Sprint: unlimited 7.4 m/s, no stamina or sprint meter. Slide: 0.70 seconds,
-13 m/s decelerating to 3 m/s (about 5.1m on clear ground). Travel heading is locked;
-mouse aiming cannot steer the slide. Holding C never prolongs or repeats it. C again
-cancels into movement; Space cancels into a jump with headroom. No stamina/cooldown.
-Exit speed is bounded to normal movement; low overhead cover keeps the player crouched.
-Headroom and wall collision remain enforced. Attack animations and the camera retain their smooth transitions.
-Karambit: 60 base damage, 1.9m reach, 0.34s cooldown, 0.12s hit timing. A hit connecting
-while slide is active executes exactly one non-SWAT target. All five SWAT variants
-are immune to every karambit hit, including sliding executions, with armor feedback.
-Sliding contact uses nearest body bounds, a wider forward arc and point-blank overlap,
-plus a swept travel path to avoid passing through enemies during windup. Contact
-starts at 0.12s and remains active until 0.24s or the first hit. Visibility is checked
-from both the swept position and current position; walls and vertical reach still apply.
-No bonus for misses, blocked/out-of-range hits, other weapons or a hit after sliding ends.
-RPG: 9 per wave (1 loaded + 8 reserve), still one-shot magazine and 1.5-second reload.
-Magazine components now share one placement, and the support hand follows the same
-extraction path. Magazine clears the receiver before moving sideways. All four long-gun
-magazines have correctly sized rib details; front sights now have supporting posts.
-Karambit model adds a curved full tang, textured grip scales, pins, open retention
-ring and revised blade. A raised sideways hold exposes the blade below the fist.
-Tests cover unlimited sprint, held-key slide expiry, C/Space cancel, headroom, fixed
-travel heading, deceleration and distance across frame rates, overlapping/swept/late
-melee contact, non-SWAT executions, SWAT immunity and reach/cover/weapon limitations,
-RPG resupply/reload/swap conservation and magazine/hand animation alignment.
-Private software previews of the actual draw meshes/transforms were inspected for
-karambit idle/attack and firearm idle/reloads. This is geometry verification with a
-simplified software shader, not a WebGL/browser gameplay test. Opera remained untouched
-as requested while the owner used the computer.
-
-MAP PACK 07
-All locations retain the original 42 x 50m boundary, 41 x 49 navigation grid and
-spawn at (0,0,18). The original Yard remains available with two cargo containers opened and a security hut.
-Freight Depot: two rail sidings, staggered freight cars, a walk-in dispatch office,
-loading crates and low concrete cover. Ironworks: four cooling tanks, overhead pipe
-racks, staggered L-shaped work bays, crates and low cover with outer bypasses.
-The two survival maps use the existing faction, probability, count and reward rules.
-Map geometry is cached once; switching replaces collision/navigation/shadows together.
-The shadow texture is reused. Switching is only allowed from the main menu.
-
-Practice Range: 42 x 50m open-air firing range with acoustic walls, bullet trap,
-shooting benches, dividers, overhead baffles and five clearly marked distances from
-the firing line: 5m, 10m, 15m, 25m and 40m. One additional steel target moves laterally
-by +/-1.5m, and a close dummy provides melee/slide practice. Nine targets total, including two in the new training rooms.
-Targets have 100 HP, hit/damage feedback, a falling animation and a two-second reset.
-Try all 15 items through three category-restricted practice selectors on the main menu.
-Temporary practice selections never change owned items or the saved combat loadout.
-E refills standard wave-one ammo/equipment, clears projectiles/smoke/hazards and resets
-targets and session counters. R remains normal reload. Pause blocks practice resets.
-Practice cannot damage the player or award credits/eliminations/waves/best-wave stats.
-An explicit reward guard covers the interval when all targets are down and menu exit.
-Practice hit/down/damage totals are temporary and shown in the HUD. No accuracy stat
-is claimed, because pellet hits and explosive hits are counted separately.
-
-Verification: 121 automated simulation checks pass, including all earlier checks.
-New checks cover map selection restrictions, full connectivity of the two new grids,
-spawn-to-player routes at waves 1/5/15/20/50 on all combat arenas, and early/25-SWAT
-combat movement on both new maps. Range checks cover all firearms/melee, RPG blasts,
-5-40m sight lines, moving-target bounds, two-second resets, no wave progression,
-practice/collection separation, paused controls, E input and category validation.
-All literal DOM IDs resolve uniquely. Geometry has finite vertices and unit normals.
-Software-rendered overviews, spawn views and the range firing-line view were inspected.
-These use simplified shading and are not GPU, FPS or manual gameplay verification.
-Opera was left untouched while the owner used the computer; manual gameplay remains
-unverified. Production asset and exact standalone-source synchronization checks pass.
-
-ENVIRONMENT UPDATE 08
-All four maps retain their 42 x 50m boundaries. Added 18 solid cover clusters:
-Yard 5; Depot 5; Ironworks 4; Range 4. These mix sandbags, pallet stacks and generators.
-The Yard now has two walk-through cargo containers and a security hut. Freight Depot
-has a new warehouse and cargo office plus furniture in its existing dispatch room.
-Ironworks replaces two bare work-bay partitions with a workshop and control room.
-Practice gains two furnished training rooms and two additional indoor targets (9 total).
-All ten interiors have two exits. The seven new rooms have 2.8m doorways, window
-openings above solid 1.1m sills, solid roofs, lockers, workbenches, lights and signs.
-The original Yard crawl canopy remains, with existing crouch/headroom rules.
-
-Added drain grilles, panel seams, electrical boxes, conduit, floor paint, cargo markings,
-freight-car hardware, tank ladders/valves/hatches, range bench mats and equipment boxes.
-Large cover and room shells use solid collision; attached trim is decorative. Details
-are cached and batched by material, retaining 8-9 static draws per combat map. The
-128 buffers / 1,273,680 vertices include all four cached maps and every item model,
-not a per-frame geometry allocation. GPU frame rate has not been measured.
-
-121 automated checks pass. Added checks cover complete navigation connectivity on
-all four maps, standing movement in/out of both doors of every interior, firing through
-windows versus blocked sill/roof rays, solid cover, early/25-SWAT spawn routes into
-every combat interior, and both indoor practice targets without saved-stat changes.
-Existing 5-40m firing lines, moving target bounds, practice isolation, movement, combat,
-rewards and progress tests still pass. Save schema unchanged; the machete nerf below is the only combat balance change.
-Software-rendered overviews of all four maps, interior views, combat spawn views and
-the range firing line were inspected. Simplified shading is not an actual WebGL/FPS
-playtest; manual Opera gameplay remains unverified because the user is using the PC.
-
-MACHETE NERF (included in Update 08)
-Damage: 65 -> 25 (-61.5%). Reach: 2.35 -> 1.65m. Cooldown: 0.70 -> 1.00s.
-Hit timing remains 0.23s. No headshot bonus or sliding execution; armor/shields still
-reduce damage. A fresh 65-HP thug requires three hits. Finishing a wounded enemy
-remains possible. Karambit stats, animations, hit detection and SWAT immunity are
-unchanged. Two additional checks verify all human/K9 variants survive one normal or
-sliding machete hit, and verify the three-hit kill, real cooldown and reduced reach.
-
-ROCKET MOBILITY UPDATE 09
-Player-fired RPGs aimed downward (direction Y below -0.55) can launch from a world
-surface beneath the player, within 2.2m horizontally and 2.5m below the feet. The blast
-requires clear sight to the player. Enemy rockets, aerial detonations and side blasts
-do not activate it. Rockets sweep their path and check the muzzle to prevent tunneling.
-Launch: 11.5 m/s vertical speed with 15 m/s squared gravity, about 4.2m actual lift
-and 1.5 seconds airborne on level ground. Air movement is multiplied by 1.65 until
-landing: walk 4.5 -> 7.425 m/s; sprint 7.4 -> 12.21 m/s. HUD and smooth FOV cue apply.
-Qualifying blast self-damage: 10, unaffected by difficulty; practice remains harmless.
-This reduced cost also applies when headroom blocks a qualifying launch. At lethal
-health, death takes priority and no launch occurs. Normal RPG blast damage is unchanged.
-Launch cancels sliding/crouching when standing clearance exists; low ceilings block it.
-Ceilings stop upward travel and solid roofs/cover catch descending players. Landing,
-death, menu exit, practice reset, invalid-position recovery and admin flight clear the
-boost. Pause freezes it. Additional blasts cannot stack launch impulses while boosted.
-RPG remains 1 loaded + 8 reserve, 1.5s reload. Save data and other weapon balance unchanged.
-129 automated simulation checks pass, eight new rocket checks covering all four maps
-at 30/60/144 FPS, ammunition use, boost movement/reset, each difficulty, single-impact
-damage/launch, exclusion cases, ceilings, roof landings/relaunches, death/menu/pause,
-invalid-position recovery, arena limits and thin-wall collision. Mocked WebGL only;
-manual Opera gameplay, visual movement feel and real GPU performance remain unverified.
-
-RPG RELOAD ADJUSTMENT
-Reload reduced from 4.2 to 1.5 seconds. Reload animation and handling sounds follow
-the weapon duration. Existing ammo-conservation check now verifies the chamber stays
-empty at 1.499 seconds and refills at 1.501 seconds, consuming exactly one reserve.
-
-COMBAT UPDATE 10 - KARAMBIT CONTACT AND RPG COOLDOWN
-Reproduced missed hits against overlapping enemies when attack precedes C, when the
-enemy moves through the attack, and when the slide expires during attack windup.
-Karambit now records the attack origin before checking slide state and retains the
-existing bounded contact sweep. Normal karambit attacks use the closest body contact
-instead of a torso-centre cone, allowing overlap at slide expiry/cancellation to hit.
-Damage remains 60; only impact during an active slide executes non-SWAT enemies.
-SWAT remains immune. One target per swing, range, walls and machete balance preserved.
-RPG firing cooldown: 2 seconds; reload: 1.5 seconds; supply: 9 rockets each wave.
-132 automated simulation checks pass. New checks exercise real mousedown/C handlers
-in both orders, moving enemies, expiry/cancellation and different aim directions at
-30/60/144 FPS, plus cover and SWAT restrictions. Reload checks verify no firing just
-before 2 seconds despite an already-loaded chamber, and firing just after 2 seconds.
-Manual Opera gameplay remains unverified; the user is using the computer.
+Iron six revolver | Secondary | Rare | 3.50%
+Machete | Secondary | Uncommon | 4.50%
+Karambit | Secondary | Rare | 3.50%
+Field bandage | Equipment | Common | 5.00%
+Flashbang | Equipment | Rare | 3.00%
+Boogie bomb | Equipment | Epic | 1.50%
+Smoke bomb | Equipment | Uncommon | 2.50%
+Flamethrower | Primary | Epic | 2.00%
+Tactical Crossbow | Primary | Rare | 3.50%
+LMG | Primary | Epic | 1.80%
+Nerf Gun | Primary | Common | 5.00%
+Pump Shotgun | Primary | Rare | 3.50%
+Mini Uzi | Secondary | Uncommon | 5.50%
+Chainsaw | Secondary | Rare | 3.00%
+Sawed-Off Shotgun | Secondary | Rare | 3.00%
+Fire Axe | Secondary | Uncommon | 4.50%
+Sticky Bomb | Equipment | Rare | 2.50%
+Molotov | Equipment | Uncommon | 3.50%
+Throwing Knives | Equipment | Common | 4.00%
+C4 | Equipment | Epic | 1.60%
