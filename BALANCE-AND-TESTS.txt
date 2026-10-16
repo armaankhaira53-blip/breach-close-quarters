@@ -1,4 +1,4 @@
-BREACH / ROCKET MOBILITY UPDATE 09 - BALANCE AND VERIFICATION
+BREACH / COMBAT UPDATE 10 - BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
 
 IMPLEMENTED
@@ -71,7 +71,7 @@ Longshot sniper rifle | 115 | 5 | 15 | 1.25s | 2.8s
 BR-3 burst assault rifle | 31 | 24 | 72 | 0.48s burst cooldown + 0.18s; rounds 0.09s apart | 2.1s
 Double-barrel shotgun | 18 x 9 pellets | 2 | 22 | 0.33s | 2.3s
 Viper submachine gun | 19 | 32 | 128 | 0.075s | 1.65s
-RPG-7 | 260 | 1 | 8 | 1.5s | 1.5s
+RPG-7 | 260 | 1 | 8 | 2.0s | 1.5s
 Iron six revolver | 64 | 6 | 24 | 0.46s | 2.5s
 Headshots: 2.4x. Body armor reduces damage; headshots bypass armor.
 Full-damage range: AR-4 24m; pistol 18m; sniper 60m; burst rifle 30m;
@@ -196,7 +196,7 @@ this is not secure identity verification. Sandbox saves/export/import cannot ove
 normal progress. Changing to a normal name reloads the legitimate local collection.
 
 VERIFICATION / LIMITS
-129 automated checks pass against the actual maintained game closure with mocked WebGL.
+132 automated checks pass against the actual maintained game closure with mocked WebGL.
 Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
 duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
 input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
@@ -349,3 +349,18 @@ RPG RELOAD ADJUSTMENT
 Reload reduced from 4.2 to 1.5 seconds. Reload animation and handling sounds follow
 the weapon duration. Existing ammo-conservation check now verifies the chamber stays
 empty at 1.499 seconds and refills at 1.501 seconds, consuming exactly one reserve.
+
+COMBAT UPDATE 10 - KARAMBIT CONTACT AND RPG COOLDOWN
+Reproduced missed hits against overlapping enemies when attack precedes C, when the
+enemy moves through the attack, and when the slide expires during attack windup.
+Karambit now records the attack origin before checking slide state and retains the
+existing bounded contact sweep. Normal karambit attacks use the closest body contact
+instead of a torso-centre cone, allowing overlap at slide expiry/cancellation to hit.
+Damage remains 60; only impact during an active slide executes non-SWAT enemies.
+SWAT remains immune. One target per swing, range, walls and machete balance preserved.
+RPG firing cooldown: 2 seconds; reload: 1.5 seconds; supply: 9 rockets each wave.
+132 automated simulation checks pass. New checks exercise real mousedown/C handlers
+in both orders, moving enemies, expiry/cancellation and different aim directions at
+30/60/144 FPS, plus cover and SWAT restrictions. Reload checks verify no firing just
+before 2 seconds despite an already-loaded chamber, and firing just after 2 seconds.
+Manual Opera gameplay remains unverified; the user is using the computer.

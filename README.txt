@@ -1,4 +1,4 @@
-BREACH / ROCKET MOBILITY UPDATE 09
+BREACH / COMBAT UPDATE 10
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -89,7 +89,7 @@ dist/: maintained HTML/CSS/JavaScript; only these three files are publicly serve
 BALANCE-AND-TESTS.txt: exact probabilities, wave rules, values, tests and limitations.
 Node 24: npm run build rebuilds the HTML and runs simulation/production checks.
 npm test reruns those checks. Windows: use npm.cmd if PowerShell blocks npm.ps1.
-129 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
+132 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
 all scopes, movement transitions, weapon/equipment behavior and 10,000 wave plans.
 Production asset and exact standalone synchronization checks pass.
 
@@ -125,3 +125,9 @@ ceiling clearance, elevated landings/relaunches, boundaries and thin-wall impact
 Real-browser movement feel remains unverified; no desktop takeover was performed.
 
 RPG reload time is now 1.5 seconds; nine-rocket supplies and rocket jumping are unchanged.
+
+COMBAT UPDATE 10
+Karambit attacks preserve their contact path when clicking before starting a slide.
+Body overlap remains hittable if the slide ends during the swing; these hits deal normal
+60 damage, with no slide execution. SWAT immunity and machete balance are unchanged.
+RPG firing cooldown is now 2 seconds; reload remains 1.5 seconds.
