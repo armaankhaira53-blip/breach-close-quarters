@@ -1,4 +1,4 @@
-BREACH / ARSENAL UPDATE 03
+BREACH / DETAIL UPDATE 04
 Created and owned by Arkh_53
 
 PLAY
@@ -10,6 +10,20 @@ WASD move; mouse look; left click attack/use; right click aim; R reload.
 Shift sprint; C toggle crouch; C while sprinting slide; Space jump.
 1/2/3 select Primary/Secondary/Equipment; mouse wheel cycles those slots.
 G uses equipped equipment. I opens the scrollable inventory/shop. Escape pauses.
+F spins the equipped karambit for inspection. Attacking cancels inspection.
+
+DETAIL UPDATE
+All fifteen inventory items have rebuilt, beveled component models with distinct
+metal, paint, rubber, fabric, wood, skin and glass shading. Detailed gloves, armor,
+helmets, close-range NPC weapons, drones, mines and industrial arena trim are added.
+Karambit: one full ring-pivot spin over 0.72s when equipped, followed by a settled
+grip; attacking uses a slash and recovery motion. F performs two inspection spins
+over 1.2s. Animations freeze while paused and do not modify the player camera.
+Reloads animate magazines, bolts/slides, the revolver cylinder, shotgun barrels
+and RPG rocket. Original combat values and collection data are preserved.
+Graphics selector: Low / Balanced / High / Ultra. High is the default. Pixel
+budgets prevent unlimited supersampling; choose Balanced or Low on slower hardware.
+This is detailed procedural art, not photorealistic scanned models or textures.
 
 COLLECTION
 Shop Info shows all fifteen rewards and exact odds. Crates cost earned credits.
@@ -30,9 +44,12 @@ and backup-2026-10-15/. These local-only files are excluded from the public repo
 Never place a diagnostic harness in dist/.
 
 STATUS
-51 simulation checks pass, including weapon/equipment behavior and 10,000 wave plans.
-Package checks and standalone synchronization pass. Real-browser playtesting was
-blocked by the Computer Use runtime's browser-URL verification failure. Rendering,
-sound playback, dance recognizability, camera feel and real FPS remain unverified.
+61 automated checks pass, including weapon/equipment behavior, 10,000 wave plans,
+karambit spin/attack/pause behavior, finite geometry, unit normals and cached buffers.
+Package checks and standalone synchronization pass. These checks use mocked WebGL.
+Opera GX preview automation was interrupted by repeated user-input detection and
+a minimized window; recovery did not permit loading Update 04. Its actual GPU
+rendering, animation appearance, sound playback, camera feel and FPS remain unverified.
 Custom sounds and models are procedural. The NPC hurt voice is synthetic.
-Single-player only; no server or multiplayer. No hosted publication in this task.
+Single-player only; no server or multiplayer. GitHub main is the publication target;
+the existing Vercel integration builds and serves dist/.

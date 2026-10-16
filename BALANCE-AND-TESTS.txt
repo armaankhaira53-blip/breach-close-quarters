@@ -1,4 +1,4 @@
-BREACH / ARSENAL UPDATE 03 — BALANCE AND VERIFICATION
+BREACH / DETAIL UPDATE 04 — BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53.
 
 IMPLEMENTED
@@ -145,7 +145,7 @@ were a plausible code-level source; the reported random twitch could not be
 reproduced in the real browser, so the visual camera fix is not yet verified.
 
 VERIFICATION / LIMITS
-51 tests pass against the actual game closure in a Node VM with mocked WebGL.
+61 tests pass against the actual game closure in a Node VM with mocked WebGL.
 Includes 10,000 wave plans; all firearms/melee; crate odds/award/duplicates; save
 roundtrip; category restrictions; swap/resupply/cooldown/paused controls; input
 handlers; invalid coordinates; timings/recovery/overlap; K9/drone completion;
@@ -154,15 +154,52 @@ camera numeric stability; ragdolls; 25-SWAT stress with twelve smoke clouds.
 Standalone HTML exactly matches dist JavaScript/CSS. Production inventory checks
 pass, including absent mutation diagnostics and exact menu text.
 These are simulation checks, NOT a completed visual or manual gameplay test.
-Opera GX Computer Use was blocked because the runtime could not determine the
-current browser URL confidently enough to enforce policy. No further browser
-input was attempted. GPU rendering, real audio playback, mouse feel, visual dance
-recognizability, animation polish, actual FPS and sustained wave enjoyment remain
-unverified. QA-arsenal.html is an isolated local harness for those checks; it uses
-an in-memory collection and is excluded from production files.
+For Update 04, Opera GX showed the older live game, but preview loading was blocked
+by repeated "user input was detected in this window" reports and a minimized window.
+Refreshing window selection and activation did not recover input. The new GPU
+rendering, audio playback, mouse feel, dance recognizability, animation appearance,
+actual FPS and sustained wave enjoyment remain unverified. QA-arsenal.html remains
+an isolated local harness using an in-memory collection, excluded from production.
 All new models, choreography and sounds are original procedural implementations,
 with no downloaded/licensed third-party assets. Sounds are synthesized, including
 a synthetic NPC hurt grunt; no recorded actor voices or mocap assets are included.
 The game remains single-player and browser-local. No multiplayer server exists;
 browser-local saves are not a server-authoritative economy or anti-cheat boundary.
-No hosted deployment or remote repository update was performed in this task.
+GitHub main is the publication target; the existing Vercel integration serves dist/.
+
+DETAIL UPDATE 04 / VISUAL IMPLEMENTATION
+All fifteen inventory items rebuilt from cached beveled geometry, smooth cylinders,
+true open rings and curved blade strips. Individual material groups distinguish
+brushed steel, paint, rubber, fabric weave, skin, wood, glass and emissive details.
+Lighting uses roughness-dependent highlights, Fresnel reflections, filmic tonemapping
+and corrected normals for nonuniform scales, retaining directional shadow maps.
+Original procedural assets only; no downloaded textures, licensed meshes or mocap.
+This improves detail within the existing renderer; it is not photorealistic art.
+More detailed gloves, pouches, helmet fittings, kneepads, boots and wrist display;
+close NPC weapon models reuse inventory geometry with a distance-based fallback.
+Drone adds motor housings, propeller guards, landing skids and camera; mines add
+rim, screws and warning markings. Arena adds drainpipes, seams, grit and hardware.
+Decorative geometry does not change collisions, navigation, cover or wave rules.
+
+Karambit equips with one 360-degree spin over 0.72 seconds about the finger-ring
+pivot, then settles. Attack is gated until that equip delay ends. Its attack has
+a slash/recovery pose, retaining 34 damage, 1.65m reach, 0.34s cooldown and 0.12s hit.
+F triggers two inspection rotations over 1.2 seconds; attacking cancels inspection.
+Hands follow the weapon pose without spinning around the knife pivot. Simulation
+time drives animation, so pausing freezes it and no visual pose changes the camera.
+Other items animate magazines, slides, bolts, cylinder, hammer, shotgun break action,
+grenade pins/levers and RPG rocket during reload/use. Existing sounds retained.
+
+Graphics: Low 0.8x / 1.4 megapixel cap; Balanced 1x / 2.6 MP; High 1.25x / 4.2 MP;
+Ultra 1.5x / 6.2 MP. Scale multiplies device pixel ratio (DPR capped at 2), bounded
+by the pixel budget. High default. Graphics preference has its own local save key.
+Inventory, credits, backup import/export, drop rates and combat balance unchanged.
+
+Additional tests check geometry/batch budgets for all items, full karambit draw
+rotation, blocked early attack, slash damage, inspection isolation from camera and
+supplies, pause freezing, finite animation poses, resolution caps, item icons,
+finite vertices/unit normals and no new GPU buffers allocated during rendering.
+61 checks total; 98 cached GPU buffers / 396,564 vertices across all assets.
+GPU shader compilation and frame time were not measured by the mocked renderer.
+Lower-detail distant weapons and simpler K9/ragdoll/status poses remain; procedural
+faces and synthetic sounds are limitations, not film-quality replacements.
