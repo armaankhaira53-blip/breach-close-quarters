@@ -1,4 +1,4 @@
-BREACH / ENVIRONMENT UPDATE 08 - BALANCE AND VERIFICATION
+BREACH / ROCKET MOBILITY UPDATE 09 - BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
 
 IMPLEMENTED
@@ -79,7 +79,8 @@ double barrel 7m; SMG 13m; revolver 27m. Damage falls beyond this range;
 minimum 12% for shotgun pellets and 35% for other bullets. ADS reduces spread.
 Machete: 25 damage / 1.65m reach / 1.00s cooldown / hit at 0.23s.
 Karambit: 60 damage / 1.9m reach / 0.34s cooldown / hit at 0.12s.
-RPG: 260 radial damage falling to zero over 8m; self damage up to 120.
+RPG: 260 radial damage falling to zero over 8m; ordinary self damage up to 120.
+Qualifying rocket-jump blasts cost 10 health instead (see Update 09 below).
 
 RESUPPLY
 At wave start, magazines reset to capacity; reserves reset, never accumulate.
@@ -195,7 +196,7 @@ this is not secure identity verification. Sandbox saves/export/import cannot ove
 normal progress. Changing to a normal name reloads the legitimate local collection.
 
 VERIFICATION / LIMITS
-121 automated checks pass against the actual maintained game closure with mocked WebGL.
+129 automated checks pass against the actual maintained game closure with mocked WebGL.
 Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
 duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
 input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
@@ -321,3 +322,25 @@ reduce damage. A fresh 65-HP thug requires three hits. Finishing a wounded enemy
 remains possible. Karambit stats, animations, hit detection and SWAT immunity are
 unchanged. Two additional checks verify all human/K9 variants survive one normal or
 sliding machete hit, and verify the three-hit kill, real cooldown and reduced reach.
+
+ROCKET MOBILITY UPDATE 09
+Player-fired RPGs aimed downward (direction Y below -0.55) can launch from a world
+surface beneath the player, within 2.2m horizontally and 2.5m below the feet. The blast
+requires clear sight to the player. Enemy rockets, aerial detonations and side blasts
+do not activate it. Rockets sweep their path and check the muzzle to prevent tunneling.
+Launch: 11.5 m/s vertical speed with 15 m/s squared gravity, about 4.2m actual lift
+and 1.5 seconds airborne on level ground. Air movement is multiplied by 1.65 until
+landing: walk 4.5 -> 7.425 m/s; sprint 7.4 -> 12.21 m/s. HUD and smooth FOV cue apply.
+Qualifying blast self-damage: 10, unaffected by difficulty; practice remains harmless.
+This reduced cost also applies when headroom blocks a qualifying launch. At lethal
+health, death takes priority and no launch occurs. Normal RPG blast damage is unchanged.
+Launch cancels sliding/crouching when standing clearance exists; low ceilings block it.
+Ceilings stop upward travel and solid roofs/cover catch descending players. Landing,
+death, menu exit, practice reset, invalid-position recovery and admin flight clear the
+boost. Pause freezes it. Additional blasts cannot stack launch impulses while boosted.
+RPG remains 1 loaded + 8 reserve, 4.2s reload. Save data and other weapon balance unchanged.
+129 automated simulation checks pass, eight new rocket checks covering all four maps
+at 30/60/144 FPS, ammunition use, boost movement/reset, each difficulty, single-impact
+damage/launch, exclusion cases, ceilings, roof landings/relaunches, death/menu/pause,
+invalid-position recovery, arena limits and thin-wall collision. Mocked WebGL only;
+manual Opera gameplay, visual movement feel and real GPU performance remain unverified.

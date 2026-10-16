@@ -1,4 +1,4 @@
-BREACH / ENVIRONMENT UPDATE 08
+BREACH / ROCKET MOBILITY UPDATE 09
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -89,7 +89,7 @@ dist/: maintained HTML/CSS/JavaScript; only these three files are publicly serve
 BALANCE-AND-TESTS.txt: exact probabilities, wave rules, values, tests and limitations.
 Node 24: npm run build rebuilds the HTML and runs simulation/production checks.
 npm test reruns those checks. Windows: use npm.cmd if PowerShell blocks npm.ps1.
-121 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
+129 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
 all scopes, movement transitions, weapon/equipment behavior and 10,000 wave plans.
 Production asset and exact standalone synchronization checks pass.
 
@@ -112,3 +112,14 @@ FUTURE FEATURE
 Worldwide rankings are retained on the roadmap, as requested. They are not enabled
 in this single-player release and will need trusted backend validation and hosting.
 Multiplayer and party codes remain canceled.
+
+ROCKET MOBILITY UPDATE 09
+Aim the RPG down at the surface close to your feet to launch about 4 metres up.
+A qualifying close blast costs 10 health on every difficulty (zero in practice).
+Airborne movement is 65% faster until landing, including sprinting: 7.4 -> 12.21 m/s.
+The HUD shows ROCKET BOOST. Headroom and roof/cover landings respect solid collision.
+No boost stacking in midair; landing clears the boost and allows another launch.
+RPG supply stays at 9 per wave. Ordinary blast damage and all other weapons are unchanged.
+New simulation checks cover all maps at 30/60/144 FPS, speed/reset, damage, pause/death,
+ceiling clearance, elevated landings/relaunches, boundaries and thin-wall impacts.
+Real-browser movement feel remains unverified; no desktop takeover was performed.

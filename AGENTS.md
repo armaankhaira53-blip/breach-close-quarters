@@ -36,3 +36,5 @@
 - Enterable structures need two reachable exits and collision matching walls, window sills and roofs. Verify standing traversal through each doorway, enemy paths to room centers and projectile obstruction independently; preserve the range firing lanes when adding cover.
 
 - The player machete is intentionally weak: 25 damage, 1.65m reach, 1s cooldown, no sliding execution. Test full-health human/K9 survival on normal/sliding hits; keep karambit mechanics unchanged when tuning the machete.
+
+- Rocket boosts are transient: clear on floor/roof/cover landing, death, menu exit and invalid recovery. Sweep projectile impacts; require a player-owned downward surface blast and headroom. Verify 30/60/144 FPS, ceilings, roof relaunches and nine-rocket supply conservation. Lethal-damage tests must account for passive healing before impact.
