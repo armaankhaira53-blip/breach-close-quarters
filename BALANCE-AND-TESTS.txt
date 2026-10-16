@@ -1,4 +1,4 @@
-BREACH / MAP PACK 07 - BALANCE AND VERIFICATION
+BREACH / ENVIRONMENT UPDATE 08 - BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
 
 IMPLEMENTED
@@ -77,7 +77,7 @@ Headshots: 2.4x. Body armor reduces damage; headshots bypass armor.
 Full-damage range: AR-4 24m; pistol 18m; sniper 60m; burst rifle 30m;
 double barrel 7m; SMG 13m; revolver 27m. Damage falls beyond this range;
 minimum 12% for shotgun pellets and 35% for other bullets. ADS reduces spread.
-Machete: 65 damage / 2.35m reach / 0.70s cooldown / hit at 0.23s.
+Machete: 25 damage / 1.65m reach / 1.00s cooldown / hit at 0.23s.
 Karambit: 60 damage / 1.9m reach / 0.34s cooldown / hit at 0.12s.
 RPG: 260 radial damage falling to zero over 8m; self damage up to 120.
 
@@ -195,7 +195,7 @@ this is not secure identity verification. Sandbox saves/export/import cannot ove
 normal progress. Changing to a normal name reloads the legitimate local collection.
 
 VERIFICATION / LIMITS
-113 automated checks pass against the actual maintained game closure with mocked WebGL.
+121 automated checks pass against the actual maintained game closure with mocked WebGL.
 Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
 duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
 input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
@@ -203,7 +203,7 @@ all four scopes hiding weapon geometry, dressed actor poses through dance/flash/
 finite attached transforms, distinct bounded audio waveforms, once-only difficulty/faction
 rewards, menu cleanup, personal stat persistence and sandbox save/action isolation.
 Includes all enemy variants, K9/drone completion, special attacks, smoke/effect overlap,
-mines/chains and 25-SWAT stress. Geometry: 119 cached buffers / 642,396 finite vertices;
+mines/chains and 25-SWAT stress. Geometry: 128 cached buffers / 1,273,680 finite vertices;
 unit normals pass and rendering does not allocate additional mesh buffers.
 The standalone HTML exactly matches maintained CSS/JS. Production scans confirm only
 three public assets, correct menu credits/Sensitivity, no mutation diagnostic API,
@@ -252,7 +252,7 @@ as requested while the owner used the computer.
 
 MAP PACK 07
 All locations retain the original 42 x 50m boundary, 41 x 49 navigation grid and
-spawn at (0,0,18). The original Yard remains available without geometry changes.
+spawn at (0,0,18). The original Yard remains available with two cargo containers opened and a security hut.
 Freight Depot: two rail sidings, staggered freight cars, a walk-in dispatch office,
 loading crates and low concrete cover. Ironworks: four cooling tanks, overhead pipe
 racks, staggered L-shaped work bays, crates and low cover with outer bypasses.
@@ -263,7 +263,7 @@ The shadow texture is reused. Switching is only allowed from the main menu.
 Practice Range: 42 x 50m open-air firing range with acoustic walls, bullet trap,
 shooting benches, dividers, overhead baffles and five clearly marked distances from
 the firing line: 5m, 10m, 15m, 25m and 40m. One additional steel target moves laterally
-by +/-1.5m, and a close dummy provides melee/slide practice. Seven targets total.
+by +/-1.5m, and a close dummy provides melee/slide practice. Nine targets total, including two in the new training rooms.
 Targets have 100 HP, hit/damage feedback, a falling animation and a two-second reset.
 Try all 15 items through three category-restricted practice selectors on the main menu.
 Temporary practice selections never change owned items or the saved combat loadout.
@@ -274,7 +274,7 @@ An explicit reward guard covers the interval when all targets are down and menu 
 Practice hit/down/damage totals are temporary and shown in the HUD. No accuracy stat
 is claimed, because pellet hits and explosive hits are counted separately.
 
-Verification: 113 automated simulation checks pass, including all earlier checks.
+Verification: 121 automated simulation checks pass, including all earlier checks.
 New checks cover map selection restrictions, full connectivity of the two new grids,
 spawn-to-player routes at waves 1/5/15/20/50 on all combat arenas, and early/25-SWAT
 combat movement on both new maps. Range checks cover all firearms/melee, RPG blasts,
@@ -285,3 +285,39 @@ Software-rendered overviews, spawn views and the range firing-line view were ins
 These use simplified shading and are not GPU, FPS or manual gameplay verification.
 Opera was left untouched while the owner used the computer; manual gameplay remains
 unverified. Production asset and exact standalone-source synchronization checks pass.
+
+ENVIRONMENT UPDATE 08
+All four maps retain their 42 x 50m boundaries. Added 18 solid cover clusters:
+Yard 5; Depot 5; Ironworks 4; Range 4. These mix sandbags, pallet stacks and generators.
+The Yard now has two walk-through cargo containers and a security hut. Freight Depot
+has a new warehouse and cargo office plus furniture in its existing dispatch room.
+Ironworks replaces two bare work-bay partitions with a workshop and control room.
+Practice gains two furnished training rooms and two additional indoor targets (9 total).
+All ten interiors have two exits. The seven new rooms have 2.8m doorways, window
+openings above solid 1.1m sills, solid roofs, lockers, workbenches, lights and signs.
+The original Yard crawl canopy remains, with existing crouch/headroom rules.
+
+Added drain grilles, panel seams, electrical boxes, conduit, floor paint, cargo markings,
+freight-car hardware, tank ladders/valves/hatches, range bench mats and equipment boxes.
+Large cover and room shells use solid collision; attached trim is decorative. Details
+are cached and batched by material, retaining 8-9 static draws per combat map. The
+128 buffers / 1,273,680 vertices include all four cached maps and every item model,
+not a per-frame geometry allocation. GPU frame rate has not been measured.
+
+121 automated checks pass. Added checks cover complete navigation connectivity on
+all four maps, standing movement in/out of both doors of every interior, firing through
+windows versus blocked sill/roof rays, solid cover, early/25-SWAT spawn routes into
+every combat interior, and both indoor practice targets without saved-stat changes.
+Existing 5-40m firing lines, moving target bounds, practice isolation, movement, combat,
+rewards and progress tests still pass. Save schema unchanged; the machete nerf below is the only combat balance change.
+Software-rendered overviews of all four maps, interior views, combat spawn views and
+the range firing line were inspected. Simplified shading is not an actual WebGL/FPS
+playtest; manual Opera gameplay remains unverified because the user is using the PC.
+
+MACHETE NERF (included in Update 08)
+Damage: 65 -> 25 (-61.5%). Reach: 2.35 -> 1.65m. Cooldown: 0.70 -> 1.00s.
+Hit timing remains 0.23s. No headshot bonus or sliding execution; armor/shields still
+reduce damage. A fresh 65-HP thug requires three hits. Finishing a wounded enemy
+remains possible. Karambit stats, animations, hit detection and SWAT immunity are
+unchanged. Two additional checks verify all human/K9 variants survive one normal or
+sliding machete hit, and verify the three-hit kill, real cooldown and reduced reach.

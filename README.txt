@@ -1,4 +1,4 @@
-BREACH / MAP PACK 07
+BREACH / ENVIRONMENT UPDATE 08
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -10,10 +10,14 @@ Multiplayer and party codes were canceled at the owner's request and removed.
 MAPS
 Choose SELECT MAP on the main menu; your choice is remembered on this device.
 All four locations use the original 42 x 50 metre boundary.
-The Yard: preserved original layout and wave gameplay.
-Freight Depot: rail sidings, freight cars, a walk-in dispatch office and loading cover.
-Ironworks: cooling tanks, pipe racks, work bays and connected flanking routes.
-Practice Range: five lanes at 5/10/15/25/40m, a moving steel target and a melee dummy.
+The Yard: two open cargo-container passages, a security hut, new cover and industrial detail.
+Freight Depot: a warehouse, cargo office, furnished dispatch room and loading-area cover.
+Ironworks: detailed cooling tanks, pipework, a workshop, a control room and extra cover.
+Practice Range: five lanes at 5/10/15/25/40m, moving/melee targets and two training rooms.
+Ten enterable spaces across the four maps have multiple exits. Seven newly built rooms
+have firing windows, solid sills/roofs, workbenches, lockers, lights and signs.
+Eighteen new sandbag, pallet and generator cover clusters supplement existing cover.
+Practice now has nine targets, including two inside the new training rooms.
 Try any item in three category-correct practice slots without unlocking it. Targets
 have 100 HP, hit/damage feedback and reset two seconds after falling. E refills ammo
 and equipment, clears effects and resets targets/counters. Player damage is disabled.
@@ -32,6 +36,11 @@ No slide stamina cost or cooldown.
 E resets/refills the practice range. G uses equipped equipment. I opens Armory from the menu or after death. Escape pauses.
 Pause > Main Menu ends the run and keeps legitimately earned credits and statistics.
 F spins the karambit for inspection; its equip animation spins around the finger ring.
+
+MACHETE BALANCE
+Machete damage reduced from 65 to 25, reach from 2.35m to 1.65m, and attack cooldown
+raised from 0.70s to 1.00s. Full-health enemies require multiple hits; sliding never
+grants a machete execution. Karambit balance and mechanics are unchanged.
 
 MOBILITY UPDATE
 Slides decelerate smoothly from 13 to 3 m/s over about 5.1m on clear ground.
@@ -80,7 +89,7 @@ dist/: maintained HTML/CSS/JavaScript; only these three files are publicly serve
 BALANCE-AND-TESTS.txt: exact probabilities, wave rules, values, tests and limitations.
 Node 24: npm run build rebuilds the HTML and runs simulation/production checks.
 npm test reruns those checks. Windows: use npm.cmd if PowerShell blocks npm.ps1.
-113 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
+121 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
 all scopes, movement transitions, weapon/equipment behavior and 10,000 wave plans.
 Production asset and exact standalone synchronization checks pass.
 
@@ -89,7 +98,9 @@ This release has not had a completed Opera GX gameplay/visual/audio playtest. Th
 is using the computer and asked work to continue without interrupting it. GPU rendering,
 perceived sound quality, dance recognizability, mouse feel and FPS remain unverified.
 Software-rendered map overviews and spawn/firing-line views were checked for the new
-arenas and range. All new map grids are connected; early and 25-SWAT simulations pass.
+arenas and range, including interior views. All four navigation grids are connected.
+Standing doorway traversal, window/sill/roof collision, and early/25-SWAT routes into
+every combat interior pass automated checks.
 Software-rendered previews of actual model meshes and transforms were inspected for
 karambit idle/attack, rifle idle/reload, SMG, sniper and pistol reload; these use a
 simplified software shader and do not replace an actual WebGL playtest.

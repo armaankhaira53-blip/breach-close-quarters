@@ -32,3 +32,7 @@
 
 - New arenas must switch cached geometry, collision, navigation and shadows together. Verify connected grids and routes from every spawn at early and 25-member waves; do not change maps during a run.
 - Practice targets must not pay credits or update lifetime combat statistics. Test the all-targets-down interval and immediate return to menu before targets respawn, not just the state after respawn. Practice loadouts must never unlock or replace the saved combat collection.
+
+- Enterable structures need two reachable exits and collision matching walls, window sills and roofs. Verify standing traversal through each doorway, enemy paths to room centers and projectile obstruction independently; preserve the range firing lanes when adding cover.
+
+- The player machete is intentionally weak: 25 damage, 1.65m reach, 1s cooldown, no sliding execution. Test full-health human/K9 survival on normal/sliding hits; keep karambit mechanics unchanged when tuning the machete.
