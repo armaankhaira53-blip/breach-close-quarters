@@ -16,12 +16,16 @@
 - For production asset checks, recursively inventory files, including hidden files, and reject symbolic links. Empty directories are not deployable assets; nested unexpected files must still fail the check.
 - Before publishing source, inspect tracked files as well as ignore rules. The existing local Git index tracks .openai/hosting.json and qa-scenario.js despite .gitignore; publish only a reviewed clean snapshot, or remove excluded files from tracking and audit history before pushing it. After browser uploads, compare the recursive remote file list and hashes against the prepared manifest, explicitly checking .gitignore, .vercelignore, and check.cjs; these were missing from the initial manual upload.
 
-- Sprint+C must never fall through to crouch when a slide is unavailable. Test air and low overhead clearance. Sprint and slide are intentionally unlimited; do not reintroduce stamina or slide cooldown.
+- Sprint+C must never fall through to crouch when a slide is unavailable. Test air and low overhead clearance. Sprint is unlimited and slide has no stamina cost or cooldown. Slides are short and decelerating; never extend a slide by holding C.
 - Status animations must use the same dressed actor and attachments as normal movement; verify appearance definitions and full rotation through dance, knockdown and death.
 - All scope rays must capture aim before applying recoil, and aimed foreground geometry must not obscure the reticle. Test every optic.
 - The owner canceled multiplayer and party codes. Keep this release single-player; do not restore network services or paid hosting without a new request. Personal statistics must not be presented as worldwide rankings.
 - The exact Arkh_53 username intentionally opens a public local sandbox. Never describe it as private authentication, and verify that sandbox changes cannot overwrite the normal save.
 - Personal Stats belongs on the main menu. Worldwide rankings remain a future feature, not an enabled local-only substitute; multiplayer stays canceled.
 - Magazine bodies and details must share the same local frame. Reloads must extract clear of the receiver before lateral motion, with the support hand following that frame. Verify idle and reload assembly previews.
-- RPG supplies reset to exactly 1 loaded plus 8 reserve every wave. Karambit is 60 damage with a one-hit execution only on a connecting sliding hit; test impact-time, reach, cover and armor together.
+- RPG supplies reset to exactly 1 loaded plus 8 reserve every wave. Karambit is 60 damage with a one-hit execution only on a connecting sliding hit against non-SWAT enemies. Every SWAT variant is immune to all karambit damage. Test impact-time, reach, cover and faction immunity together.
 - When passing source through a PowerShell pipe to Node, use ASCII script text with Unicode escapes for new non-ASCII strings; verify literal menu/credit text after writing.
+- Slide cancel: a second C press ends the slide into movement, and Space ends it into a jump when clear. Respect overhead clearance, cap exit speed, and remove the karambit execution bonus immediately on cancel. Test held-key expiry and real keydown/keyup paths.
+- Slide travel direction is locked at initiation. Neither WASD nor mouse aiming may steer an active slide; mouse look remains available to aim. Verify direction and trajectory stay fixed while inputs change.
+
+- Sliding melee must handle body overlap and movement during windup. Use bounds/contact sweeps rather than torso-center cones alone; test point-blank, side contact, pass-through, walls, cancellation and one target per slash at multiple frame rates.

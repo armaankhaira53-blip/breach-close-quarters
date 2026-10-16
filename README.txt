@@ -1,4 +1,4 @@
-BREACH / MOBILITY UPDATE 06
+BREACH / MOBILITY UPDATE 06.1
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -11,18 +11,22 @@ CONTROLS
 WASD move; mouse look; left click attack/use; right click aim; R reload.
 Shift sprint; C toggle crouch; C while sprinting slide only; Space jump.
 Starting a sprint stands from crouch if there is room above the player.
-Sprint has no stamina limit. Tap C while sprinting for a 1.15-second slide; hold C
-to sustain it indefinitely. WASD steers the slide. No slide stamina cost or cooldown.
+Sprint has no stamina limit. Tap C while sprinting for a 0.70-second slide.
+Travel direction stays locked; mouse aiming remains available. C again cancels into
+movement; Space cancels into a jump if clear. Holding C cannot extend or repeat slides.
+No slide stamina cost or cooldown.
 1/2/3 select Primary/Secondary/Equipment; mouse wheel cycles those slots.
 G uses equipped equipment. I opens Armory from the menu or after death. Escape pauses.
 Pause > Main Menu ends the run and keeps legitimately earned credits and statistics.
 F spins the karambit for inspection; its equip animation spins around the finger ring.
 
 MOBILITY UPDATE
-Slide speed improved to 13 down to 11 m/s, with smooth steering up to 2.8 radians/s.
+Slides decelerate smoothly from 13 to 3 m/s over about 5.1m on clear ground.
 Removed the lower-left sprint bar; health remains visible.
 Karambit now deals 60 damage with 1.9m reach. A connecting hit while sliding kills
-one enemy instantly, including heavies and shield operators; walls and reach still apply.
+one non-SWAT enemy instantly; all SWAT variants are immune to every karambit hit.
+Sliding slashes sweep body contact during travel and accept point-blank overlap,
+with a 0.12-0.24s contact window. Walls, vertical separation and reach still apply.
 New curved full-tang blade, textured scales, pins and ring; raised sideways grip shows
 the complete blade and preserves its draw/inspect spin. RPG gets 1 loaded + 8 reserve
 rockets at every wave start. Re-equipping cannot create rockets.
@@ -63,7 +67,7 @@ dist/: maintained HTML/CSS/JavaScript; only these three files are publicly serve
 BALANCE-AND-TESTS.txt: exact probabilities, wave rules, values, tests and limitations.
 Node 24: npm run build rebuilds the HTML and runs simulation/production checks.
 npm test reruns those checks. Windows: use npm.cmd if PowerShell blocks npm.ps1.
-90 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
+100 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
 all scopes, movement transitions, weapon/equipment behavior and 10,000 wave plans.
 Production asset and exact standalone synchronization checks pass.
 

@@ -1,4 +1,4 @@
-BREACH / MOBILITY UPDATE 06 - BALANCE AND VERIFICATION
+BREACH / MOBILITY UPDATE 06.1 - BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
 
 IMPLEMENTED
@@ -195,7 +195,7 @@ this is not secure identity verification. Sandbox saves/export/import cannot ove
 normal progress. Changing to a normal name reloads the legitimate local collection.
 
 VERIFICATION / LIMITS
-90 automated checks pass against the actual maintained game closure with mocked WebGL.
+100 automated checks pass against the actual maintained game closure with mocked WebGL.
 Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
 duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
 input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
@@ -220,13 +220,20 @@ Worldwide rankings are retained on the roadmap, as requested. They are not enabl
 in this single-player release and will need trusted backend validation and hosting.
 Multiplayer and party codes remain canceled.
 
-MOBILITY UPDATE 06
-Sprint: unlimited 7.4 m/s, no stamina or sprint meter. Slide: 1.15 seconds on tap,
-13 m/s easing to 11 m/s; hold C to sustain with no limit or cooldown. Steer with WASD,
-up to 2.8 radians per second. Release C to finish; crouch/headroom and wall collision
-remain enforced. Attack animations and the camera retain their smooth transitions.
+MOBILITY UPDATE 06.1
+Sprint: unlimited 7.4 m/s, no stamina or sprint meter. Slide: 0.70 seconds,
+13 m/s decelerating to 3 m/s (about 5.1m on clear ground). Travel heading is locked;
+mouse aiming cannot steer the slide. Holding C never prolongs or repeats it. C again
+cancels into movement; Space cancels into a jump with headroom. No stamina/cooldown.
+Exit speed is bounded to normal movement; low overhead cover keeps the player crouched.
+Headroom and wall collision remain enforced. Attack animations and the camera retain their smooth transitions.
 Karambit: 60 base damage, 1.9m reach, 0.34s cooldown, 0.12s hit timing. A hit connecting
-while slide is active executes exactly one target regardless of armor or shield.
+while slide is active executes exactly one non-SWAT target. All five SWAT variants
+are immune to every karambit hit, including sliding executions, with armor feedback.
+Sliding contact uses nearest body bounds, a wider forward arc and point-blank overlap,
+plus a swept travel path to avoid passing through enemies during windup. Contact
+starts at 0.12s and remains active until 0.24s or the first hit. Visibility is checked
+from both the swept position and current position; walls and vertical reach still apply.
 No bonus for misses, blocked/out-of-range hits, other weapons or a hit after sliding ends.
 RPG: 9 per wave (1 loaded + 8 reserve), still one-shot magazine and 4.2-second reload.
 Magazine components now share one placement, and the support hand follows the same
@@ -234,8 +241,9 @@ extraction path. Magazine clears the receiver before moving sideways. All four l
 magazines have correctly sized rib details; front sights now have supporting posts.
 Karambit model adds a curved full tang, textured grip scales, pins, open retention
 ring and revised blade. A raised sideways hold exposes the blade below the fist.
-New tests cover sustained sprint/slide, instant repeat, steering/collision, frame-rate
-consistency, execution across every human variant, reach/cover/weapon limitations,
+Tests cover unlimited sprint, held-key slide expiry, C/Space cancel, headroom, fixed
+travel heading, deceleration and distance across frame rates, overlapping/swept/late
+melee contact, non-SWAT executions, SWAT immunity and reach/cover/weapon limitations,
 RPG resupply/reload/swap conservation and magazine/hand animation alignment.
 Private software previews of the actual draw meshes/transforms were inspected for
 karambit idle/attack and firearm idle/reloads. This is geometry verification with a
