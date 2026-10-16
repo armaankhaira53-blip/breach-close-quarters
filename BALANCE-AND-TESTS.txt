@@ -1,12 +1,12 @@
 BREACH / DETAIL UPDATE 04 — BALANCE AND VERIFICATION
-Updated locally: 2026-10-15. Created and owned by Arkh_53.
+Updated locally: 2026-10-15. Created and owned by Arkh_53 ? Co-owner Khibanyan.
 
 IMPLEMENTED
 15 permanent unlocks; three category-validated equipped slots; scrollable collection;
 mouse-wheel selection; saved credits/ownership/loadout with backup export and merge;
 three-second crate roll with reward fixed and saved before animation; Info odds table.
-Every wave resets limited ammunition and equipment. Changes selected during a run
-apply next wave; replacing an equipped item never removes it from the collection.
+Every wave resets limited ammunition and equipment. Choose your loadout from the
+main menu; replacing an equipped item never removes it from the collection.
 All five factions, their requested variants, K9 events, drones, mines, temporary
 effects, procedural models/animations/synthesized sounds, crouch/slide, and menu credit.
 Arena expanded from 36 x 44 to 42 x 50 metres with connected outer lanes, six new
@@ -33,7 +33,7 @@ Smoke bomb | Equipment | Uncommon | 3.40%
 Total: 100.00%. RPG: 0.10%, or 1 in 1,000 independent rolls; no guarantee/pity.
 One reward per 300-credit crate. Duplicate: refund 120 credits, retain ownership.
 No cash purchases. New collection starts with 600 credits and AR-4/Glock/M67.
-A cleared wave pays 150 credits once. A reload during a roll retains the awarded item;
+A cleared wave pays 90?420 credits once, by difficulty and faction (see below). A reload during a roll retains the awarded item;
 the shop shows the last saved reward. The reel shows illustrative cycling items,
 then reveals the exact item awarded; it does not conduct a second random selection.
 
@@ -131,7 +131,7 @@ Mercenaries: 100–105 HP, suppression, smoke and mine placement; SMG 10% armor.
 SWAT: standard 110 HP/15% armor; flash 105/10%; shield 115 HP, 82% frontal
 torso damage reduction (exposed head, feet and flank); marksman 95 HP and slow;
 heavy 165 HP/35% armor, slow and imprecise sustained bursts. HP does not escalate
-forever. Recruit scales incoming damage to 75%; Veteran to 120%, plus aim changes.
+forever. Recruit scales incoming damage to 75%; Veteran to 125%, plus aim and movement changes.
 
 BUG FIXES
 Removed the production BREACH diagnostics, including live position references,
@@ -144,62 +144,79 @@ smooth FOV/eye transitions and an analytic damped weapon spring. Mouse outliers
 were a plausible code-level source; the reported random twitch could not be
 reproduced in the real browser, so the visual camera fix is not yet verified.
 
+COMBAT UPDATE 05 / DIFFICULTY AND REWARDS
+Difficulty | Reward multiplier | Incoming damage | Enemy speed | Aim spread
+Recruit | 0.75 | 0.75 | 0.90 | 1.35
+Regular | 1.00 | 1.00 | 1.00 | 1.00
+Veteran | 1.50 | 1.25 | 1.10 | 0.72
+Smaller spread is more accurate. Drone strikes remain exactly 50% maximum HP.
+Faction base credits: Thugs 120, Police 160, Cartel 200, Mercenaries 240, SWAT 280.
+Recruit payouts: 90 / 120 / 150 / 180 / 210.
+Regular payouts: 120 / 160 / 200 / 240 / 280.
+Veteran payouts: 180 / 240 / 300 / 360 / 420.
+Completion uses the cleared wave ID plus threshold crossing, and menu exit settles
+an already-cleared wave once. Exiting an incomplete wave keeps kills, not a wave payout.
+Personal statistics persist beside the existing collection; older saves default new
+lifetime counters to zero without replacing ownership, credits or unknown fields.
+
+MODELS, SCOPES, SOUNDS AND MOVEMENT
+All fifteen items retain the detailed beveled component meshes, material groups,
+metal/cloth/rubber/glass shading, arena trim and capped graphics quality levels.
+Player gloves include cuffs, sleeves and wrist details. Civilian, police and tactical
+uniforms have distinct clothes and fittings. One posed, dressed actor handles walking,
+combat, horse-riding Gangnam-style dance, flash knockdown/recovery and death. Armor,
+shield, pouches, packs, hats and face parts remain attached through full root rotations.
+Boogie uses one spherical tiled shell instead of intersecting decorative solids.
+Revolver cylinder, shotgun hinge and grenade lever use their correct local pivots.
+Karambit equips with a 360-degree ring spin over 0.72 seconds. F spins twice over 1.2s.
+Attack cancels inspect and retains 34 damage / 1.65m reach / 0.34s cooldown.
+Rifle, burst and SMG reflex sights use open frames and a centered red dot; sniper has
+an open scope tube, circular aperture and crosshair. At aim blend >0.55, foreground
+weapon geometry is suppressed. Zoom uses 49-degree reflex / 28-degree sniper FOV.
+All scoped rays use the pre-recoil aim direction; aim and FOV blend smoothly.
+Firing sounds layer noise crack, bass, muzzle body, mechanical action and tail.
+Suppressed pistol/SMG have separate muted profiles. Reloads sequence handling sounds.
+Distance rolls off as 0.8/(1+(distance/9)^2), with low-pass filtering and stereo pan;
+sources beyond 55m are silent. Limits: 20 world / 28 total voices, master gain 0.75,
+compressor threshold -18dB / ratio 6. Three cached variations reduce repetition.
+These are original synthesized sounds, including synthetic NPC grunts, not recordings.
+C with sprint intent follows only the slide branch, even when stamina/cooldown/air
+prevents sliding. Sprinting from crouch requires headroom. Slide and crouch are exclusive;
+stationary Shift+C still crouches. Slide exit under cover remains crouched.
+Pause now has Main Menu / End Run. Run cleanup clears controls, effects and camera state.
+
+SINGLE-PLAYER SCOPE AND SANDBOX
+Multiplayer and party codes were canceled and removed at the owner's request.
+No network gameplay, paid game server, external player account or leaderboard API remains.
+Four personal statistics are shown honestly as this-device records, not worldwide ranks.
+Exactly Arkh_53 enables a public local sandbox: unlimited crate credits, nuke, flight,
+invisibility, wave selection 1?999, unlock all, and five-second mass dance. Each ability
+has an enable checkbox. Anyone entering the name gets it, as explicitly requested;
+this is not secure identity verification. Sandbox saves/export/import cannot overwrite
+normal progress. Changing to a normal name reloads the legitimate local collection.
+
 VERIFICATION / LIMITS
-61 tests pass against the actual game closure in a Node VM with mocked WebGL.
-Includes 10,000 wave plans; all firearms/melee; crate odds/award/duplicates; save
-roundtrip; category restrictions; swap/resupply/cooldown/paused controls; input
-handlers; invalid coordinates; timings/recovery/overlap; K9/drone completion;
-special-attack dodging; shield/cover; mines/chains; all variant navigation/damage;
-camera numeric stability; ragdolls; 25-SWAT stress with twelve smoke clouds.
-Standalone HTML exactly matches dist JavaScript/CSS. Production inventory checks
-pass, including absent mutation diagnostics and exact menu text.
-These are simulation checks, NOT a completed visual or manual gameplay test.
-For Update 04, Opera GX showed the older live game, but preview loading was blocked
-by repeated "user input was detected in this window" reports and a minimized window.
-Refreshing window selection and activation did not recover input. The new GPU
-rendering, audio playback, mouse feel, dance recognizability, animation appearance,
-actual FPS and sustained wave enjoyment remain unverified. QA-arsenal.html remains
-an isolated local harness using an in-memory collection, excluded from production.
-All new models, choreography and sounds are original procedural implementations,
-with no downloaded/licensed third-party assets. Sounds are synthesized, including
-a synthetic NPC hurt grunt; no recorded actor voices or mocap assets are included.
-The game remains single-player and browser-local. No multiplayer server exists;
-browser-local saves are not a server-authoritative economy or anti-cheat boundary.
-GitHub main is the publication target; the existing Vercel integration serves dist/.
+78 automated checks pass against the actual maintained game closure with mocked WebGL.
+Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
+duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
+input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
+all four scopes hiding weapon geometry, dressed actor poses through dance/flash/death,
+finite attached transforms, distinct bounded audio waveforms, once-only difficulty/faction
+rewards, menu cleanup, personal stat persistence and sandbox save/action isolation.
+Includes all enemy variants, K9/drone completion, special attacks, smoke/effect overlap,
+mines/chains and 25-SWAT stress. Geometry: 100 cached buffers / 406,404 finite vertices;
+unit normals pass and rendering does not allocate additional mesh buffers.
+The standalone HTML exactly matches maintained CSS/JS. Production scans confirm only
+three public assets, correct menu credits/Sensitivity, no mutation diagnostic API,
+no multiplayer connections and no canceled party/global-ranking controls.
+These checks do not verify GPU shader rendering, subjective sound quality, dance
+recognizability, actual frame rate or human playability. Opera GX testing was deferred
+because the owner is using the computer and asked work to continue uninterrupted.
+No photorealistic scanned models, recorded voices or mocap. These remain procedural art.
+Single-player local saves can be edited in DevTools and are not an anti-cheat boundary.
+GitHub main is the source target and Vercel serves the static dist assets.
 
-DETAIL UPDATE 04 / VISUAL IMPLEMENTATION
-All fifteen inventory items rebuilt from cached beveled geometry, smooth cylinders,
-true open rings and curved blade strips. Individual material groups distinguish
-brushed steel, paint, rubber, fabric weave, skin, wood, glass and emissive details.
-Lighting uses roughness-dependent highlights, Fresnel reflections, filmic tonemapping
-and corrected normals for nonuniform scales, retaining directional shadow maps.
-Original procedural assets only; no downloaded textures, licensed meshes or mocap.
-This improves detail within the existing renderer; it is not photorealistic art.
-More detailed gloves, pouches, helmet fittings, kneepads, boots and wrist display;
-close NPC weapon models reuse inventory geometry with a distance-based fallback.
-Drone adds motor housings, propeller guards, landing skids and camera; mines add
-rim, screws and warning markings. Arena adds drainpipes, seams, grit and hardware.
-Decorative geometry does not change collisions, navigation, cover or wave rules.
-
-Karambit equips with one 360-degree spin over 0.72 seconds about the finger-ring
-pivot, then settles. Attack is gated until that equip delay ends. Its attack has
-a slash/recovery pose, retaining 34 damage, 1.65m reach, 0.34s cooldown and 0.12s hit.
-F triggers two inspection rotations over 1.2 seconds; attacking cancels inspection.
-Hands follow the weapon pose without spinning around the knife pivot. Simulation
-time drives animation, so pausing freezes it and no visual pose changes the camera.
-Other items animate magazines, slides, bolts, cylinder, hammer, shotgun break action,
-grenade pins/levers and RPG rocket during reload/use. Existing sounds retained.
-
-Graphics: Low 0.8x / 1.4 megapixel cap; Balanced 1x / 2.6 MP; High 1.25x / 4.2 MP;
-Ultra 1.5x / 6.2 MP. Scale multiplies device pixel ratio (DPR capped at 2), bounded
-by the pixel budget. High default. Graphics preference has its own local save key.
-Inventory, credits, backup import/export, drop rates and combat balance unchanged.
-
-Additional tests check geometry/batch budgets for all items, full karambit draw
-rotation, blocked early attack, slash damage, inspection isolation from camera and
-supplies, pause freezing, finite animation poses, resolution caps, item icons,
-finite vertices/unit normals and no new GPU buffers allocated during rendering.
-61 checks total; 98 cached GPU buffers / 396,564 vertices across all assets.
-GPU shader compilation and frame time were not measured by the mocked renderer.
-Lower-detail distant weapons and simpler K9/ragdoll/status poses remain; procedural
-faces and synthetic sounds are limitations, not film-quality replacements.
+FUTURE FEATURE
+Worldwide rankings are retained on the roadmap, as requested. They are not enabled
+in this single-player release and will need trusted backend validation and hosting.
+Multiplayer and party codes remain canceled.

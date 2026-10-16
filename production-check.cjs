@@ -17,6 +17,9 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const runtime = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
 assert(!/window\.(?:BREACH|__qa)\s*=|\beval\s*\(/.test(runtime), 'Production must not expose mutation-capable diagnostics');
 assert(html.includes('Created and owned by Arkh_53') && html.includes('>Sensitivity <'), 'Menu label and ownership credit');
+assert(html.includes('Co-owner Khibanyan'), 'Co-owner credit');
+assert(!/fetch\s*\(|WebSocket|networkAction|initializeNetworkUI/.test(runtime), 'Single-player release has no multiplayer connections');
+assert(!/createParty|joinParty|partyCode|leaderboardButton/.test(html), 'No canceled multiplayer or worldwide-ranking controls');
 const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(match => match[1]);
 for (const ref of references) {
   assert(expected.includes(ref), 'Unexpected or external asset reference');
