@@ -29,3 +29,6 @@
 - Slide travel direction is locked at initiation. Neither WASD nor mouse aiming may steer an active slide; mouse look remains available to aim. Verify direction and trajectory stay fixed while inputs change.
 
 - Sliding melee must handle body overlap and movement during windup. Use bounds/contact sweeps rather than torso-center cones alone; test point-blank, side contact, pass-through, walls, cancellation and one target per slash at multiple frame rates.
+
+- New arenas must switch cached geometry, collision, navigation and shadows together. Verify connected grids and routes from every spawn at early and 25-member waves; do not change maps during a run.
+- Practice targets must not pay credits or update lifetime combat statistics. Test the all-targets-down interval and immediate return to menu before targets respawn, not just the state after respawn. Practice loadouts must never unlock or replace the saved combat collection.

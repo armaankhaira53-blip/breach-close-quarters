@@ -15,6 +15,10 @@ function publicFiles(directory, prefix = '') {
 assert.deepEqual(publicFiles(root).sort(), expected, 'Review unexpected public files before deploying');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const runtime = fs.readFileSync(path.join(root, 'game.js'), 'utf8');
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+assert.equal(new Set(ids).size, ids.length, 'Unique UI element identifiers');
+for (const match of runtime.matchAll(/\$\('([^']+)'\)/g)) assert(ids.includes(match[1]), 'Runtime UI element exists: ' + match[1]);
+for (const id of ['yard', 'depot', 'foundry', 'range']) assert(html.includes('value="' + id + '"'), 'Map selector contains ' + id);
 assert(!/window\.(?:BREACH|__qa)\s*=|\beval\s*\(/.test(runtime), 'Production must not expose mutation-capable diagnostics');
 assert(html.includes('Created and owned by Arkh_53') && html.includes('>Sensitivity <'), 'Menu label and ownership credit');
 assert(html.includes('Co-owner Khibanyan'), 'Co-owner credit');

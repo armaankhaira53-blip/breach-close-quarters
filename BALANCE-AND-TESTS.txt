@@ -1,4 +1,4 @@
-BREACH / MOBILITY UPDATE 06.1 - BALANCE AND VERIFICATION
+BREACH / MAP PACK 07 - BALANCE AND VERIFICATION
 Updated locally: 2026-10-15. Created and owned by Arkh_53 · Co-owner Khibanyan.
 
 IMPLEMENTED
@@ -195,7 +195,7 @@ this is not secure identity verification. Sandbox saves/export/import cannot ove
 normal progress. Changing to a normal name reloads the legitimate local collection.
 
 VERIFICATION / LIMITS
-100 automated checks pass against the actual maintained game closure with mocked WebGL.
+113 automated checks pass against the actual maintained game closure with mocked WebGL.
 Tests cover 10,000 wave plans, all firearms/melee/equipment, exact crate reward intervals,
 duplicates and odds UI, collection persistence, loadout categories, limited ammo/resupply,
 input handlers, crouch/slide/headroom, camera numeric stability, scoped shot alignment,
@@ -203,7 +203,7 @@ all four scopes hiding weapon geometry, dressed actor poses through dance/flash/
 finite attached transforms, distinct bounded audio waveforms, once-only difficulty/faction
 rewards, menu cleanup, personal stat persistence and sandbox save/action isolation.
 Includes all enemy variants, K9/drone completion, special attacks, smoke/effect overlap,
-mines/chains and 25-SWAT stress. Geometry: 100 cached buffers / 435,912 finite vertices;
+mines/chains and 25-SWAT stress. Geometry: 119 cached buffers / 642,396 finite vertices;
 unit normals pass and rendering does not allocate additional mesh buffers.
 The standalone HTML exactly matches maintained CSS/JS. Production scans confirm only
 three public assets, correct menu credits/Sensitivity, no mutation diagnostic API,
@@ -249,3 +249,39 @@ Private software previews of the actual draw meshes/transforms were inspected fo
 karambit idle/attack and firearm idle/reloads. This is geometry verification with a
 simplified software shader, not a WebGL/browser gameplay test. Opera remained untouched
 as requested while the owner used the computer.
+
+MAP PACK 07
+All locations retain the original 42 x 50m boundary, 41 x 49 navigation grid and
+spawn at (0,0,18). The original Yard remains available without geometry changes.
+Freight Depot: two rail sidings, staggered freight cars, a walk-in dispatch office,
+loading crates and low concrete cover. Ironworks: four cooling tanks, overhead pipe
+racks, staggered L-shaped work bays, crates and low cover with outer bypasses.
+The two survival maps use the existing faction, probability, count and reward rules.
+Map geometry is cached once; switching replaces collision/navigation/shadows together.
+The shadow texture is reused. Switching is only allowed from the main menu.
+
+Practice Range: 42 x 50m open-air firing range with acoustic walls, bullet trap,
+shooting benches, dividers, overhead baffles and five clearly marked distances from
+the firing line: 5m, 10m, 15m, 25m and 40m. One additional steel target moves laterally
+by +/-1.5m, and a close dummy provides melee/slide practice. Seven targets total.
+Targets have 100 HP, hit/damage feedback, a falling animation and a two-second reset.
+Try all 15 items through three category-restricted practice selectors on the main menu.
+Temporary practice selections never change owned items or the saved combat loadout.
+E refills standard wave-one ammo/equipment, clears projectiles/smoke/hazards and resets
+targets and session counters. R remains normal reload. Pause blocks practice resets.
+Practice cannot damage the player or award credits/eliminations/waves/best-wave stats.
+An explicit reward guard covers the interval when all targets are down and menu exit.
+Practice hit/down/damage totals are temporary and shown in the HUD. No accuracy stat
+is claimed, because pellet hits and explosive hits are counted separately.
+
+Verification: 113 automated simulation checks pass, including all earlier checks.
+New checks cover map selection restrictions, full connectivity of the two new grids,
+spawn-to-player routes at waves 1/5/15/20/50 on all combat arenas, and early/25-SWAT
+combat movement on both new maps. Range checks cover all firearms/melee, RPG blasts,
+5-40m sight lines, moving-target bounds, two-second resets, no wave progression,
+practice/collection separation, paused controls, E input and category validation.
+All literal DOM IDs resolve uniquely. Geometry has finite vertices and unit normals.
+Software-rendered overviews, spawn views and the range firing-line view were inspected.
+These use simplified shading and are not GPU, FPS or manual gameplay verification.
+Opera was left untouched while the owner used the computer; manual gameplay remains
+unverified. Production asset and exact standalone-source synchronization checks pass.

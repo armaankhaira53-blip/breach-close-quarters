@@ -1,4 +1,4 @@
-BREACH / MOBILITY UPDATE 06.1
+BREACH / MAP PACK 07
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -6,6 +6,19 @@ Open BREACH.html in Opera GX (Ctrl+O, select the file), enter a username and dep
 Desktop keyboard/mouse and WebGL required. Single-player, offline-capable, no dependencies.
 The website also serves these same assets. No account, paid game server or party needed.
 Multiplayer and party codes were canceled at the owner's request and removed.
+
+MAPS
+Choose SELECT MAP on the main menu; your choice is remembered on this device.
+All four locations use the original 42 x 50 metre boundary.
+The Yard: preserved original layout and wave gameplay.
+Freight Depot: rail sidings, freight cars, a walk-in dispatch office and loading cover.
+Ironworks: cooling tanks, pipe racks, work bays and connected flanking routes.
+Practice Range: five lanes at 5/10/15/25/40m, a moving steel target and a melee dummy.
+Try any item in three category-correct practice slots without unlocking it. Targets
+have 100 HP, hit/damage feedback and reset two seconds after falling. E refills ammo
+and equipment, clears effects and resets targets/counters. Player damage is disabled.
+Practice gives no credits and never changes your saved combat statistics or loadout.
+Escape > Main Menu lets you change maps or practice items.
 
 CONTROLS
 WASD move; mouse look; left click attack/use; right click aim; R reload.
@@ -16,7 +29,7 @@ Travel direction stays locked; mouse aiming remains available. C again cancels i
 movement; Space cancels into a jump if clear. Holding C cannot extend or repeat slides.
 No slide stamina cost or cooldown.
 1/2/3 select Primary/Secondary/Equipment; mouse wheel cycles those slots.
-G uses equipped equipment. I opens Armory from the menu or after death. Escape pauses.
+E resets/refills the practice range. G uses equipped equipment. I opens Armory from the menu or after death. Escape pauses.
 Pause > Main Menu ends the run and keeps legitimately earned credits and statistics.
 F spins the karambit for inspection; its equip animation spins around the finger ring.
 
@@ -67,7 +80,7 @@ dist/: maintained HTML/CSS/JavaScript; only these three files are publicly serve
 BALANCE-AND-TESTS.txt: exact probabilities, wave rules, values, tests and limitations.
 Node 24: npm run build rebuilds the HTML and runs simulation/production checks.
 npm test reruns those checks. Windows: use npm.cmd if PowerShell blocks npm.ps1.
-100 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
+113 automated checks pass using mocked WebGL, including saved stats, sandbox isolation,
 all scopes, movement transitions, weapon/equipment behavior and 10,000 wave plans.
 Production asset and exact standalone synchronization checks pass.
 
@@ -75,6 +88,8 @@ VERIFICATION LIMITS
 This release has not had a completed Opera GX gameplay/visual/audio playtest. The owner
 is using the computer and asked work to continue without interrupting it. GPU rendering,
 perceived sound quality, dance recognizability, mouse feel and FPS remain unverified.
+Software-rendered map overviews and spawn/firing-line views were checked for the new
+arenas and range. All new map grids are connected; early and 25-SWAT simulations pass.
 Software-rendered previews of actual model meshes and transforms were inspected for
 karambit idle/attack, rifle idle/reload, SMG, sniper and pistol reload; these use a
 simplified software shader and do not replace an actual WebGL playtest.
