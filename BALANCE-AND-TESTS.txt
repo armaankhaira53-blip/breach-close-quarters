@@ -1,8 +1,43 @@
-BREACH / ARSENAL UPDATE 11 - BALANCE AND VERIFICATION
+BREACH / ARSENAL UPDATE 12 - BALANCE AND VERIFICATION
 2026-10-16
 
+UPDATE 12 FOLLOW-UP
+- Sniper base body damage changed from flat 90 to 90% of each target maximum health.
+  Full-health enemies cannot be killed by one body hit; a follow-up may kill.
+  Headshots remain 276 base damage. Armor, shields and range falloff still apply.
+- Flamethrower damage 6 -> 7 per 0.10s tick (+16.7%); tank/base reserve 100/100 ->
+  300/300. 6m range and 3.2s reload unchanged. Flame particles blend at 55% opacity
+  per surface, fade over their last 0.05s, draw back-to-front without writing depth,
+  and restore opacity/depth/blending afterward. Other particles remain opaque.
+- Tactical Crossbow damage 78/156 -> 60/120 body/head; reload 1.8 -> 2.2 seconds.
+  Accurate 65m/s bolts, slight gravity, 45m range and 1 + 18 ammunition unchanged.
+- LMG in hand blocks sprint+C sliding, with a visible notice. Switching to it or
+  resupplying into it ends an active slide safely, including under low cover.
+  Normal crouching and sliding with other selected slots remain available.
+- LMG spin-up increased from 1.0 to 1.5 seconds. Animation, progress indicator and
+  accelerating mechanism sound follow the same duration; no firing before completion.
+- Removed Fire Axe and Double-barrel shotgun from models, runtime pools, inventory,
+  equipment choices, practice selections, crate rewards and shop information.
+- Old saves keep ownership records, credits, lifetime totals and unknown fields.
+  Removed loadout selections fall back to AR-4/Glock; backups retain retired ownership.
+- Mini Uzi damage 14 -> 11; fire interval 0.065 -> 0.075 seconds (800 rounds/minute).
+  Sustained base damage falls from 215.38 to 146.67 per second (31.9% reduction).
+  24 + 72 ammo, 1.8s reload, 10m effective range, spread and recoil unchanged.
+- All 13 non-sniper ranged weapons share the AR-4 reflex attachment (with mounting
+  foot), centered red-dot overlay and 49-degree FOV. Melee/equipment have no scope.
+  Sniper retains 28-degree FOV, existing scope, head damage and penetration.
+- Removed 8% crate probability redistributed: Pump 3.50 -> 5.50%, Sawed-Off 3 -> 4.50%,
+  Chainsaw 3 -> 4.50%, Molotov 3.50 -> 5%, Throwing Knives 4 -> 5.50%.
+  All other probabilities and rarities unchanged, including RPG at 0.10%.
+- Regression checks cover every gun's aim ray (hitscan, flame and projectile), zoom,
+  enter/exit/switch, foreground suppression, shared optic meshes, Uzi damage/cadence/
+  reload, every crate interval, removed-item rejection and old-save fresh-session reload.
+  Additional checks cover LMG 1.5s timing/audio/restart, slide rejection/cancellation,
+  crossbow body/head damage and reload, 300-fuel conservation, flame transparency,
+  draw ordering, fading and render-state cleanup.
+
 IMPLEMENTED
-28 permanent catalog items (13 new), still exactly one Primary, one Secondary and
+26 active catalog items (12 retained additions), still exactly one Primary, one Secondary and
 one Equipment slot. Category/ownership validation, shared ammunition pools, existing
 unlocks, save key breach.collection.v1, unknown saved fields and backup merge retained.
 All new items have local procedural meshes, animations, synthesized sounds and bounded
@@ -10,11 +45,11 @@ effects. Supplies reset on wave spawn; selecting or swapping never generates sup
 RPG remains 1 loaded + 8 reserve, 1.5-second reload and 2-second shot cooldown.
 
 PRIMARY BALANCE (base reserves scale with the existing wave resupply formula)
-Flamethrower: 6 damage every 0.10s, 6m range, 100 fuel + 100 base reserve; 3.2s reload.
-Tactical Crossbow: 78 body / 156 head, 65m/s bolt with slight gravity, 1 + 18 bolts;
-1.8s reload. Swept projectile collision and centered reflex aiming.
+Flamethrower: 7 damage every 0.10s, 6m range, 300 fuel + 300 base reserve; 3.2s reload.
+Tactical Crossbow: 60 body / 120 head, 65m/s bolt with slight gravity, 1 + 18 bolts;
+2.2s reload. Swept projectile collision and centered reflex aiming.
 LMG: 24 damage, 0.085s fire interval, 75 + 150 rounds, 4.2s reload; crouch and
-hold fire for a full 1.0s before any shot. Mechanism accelerates during spin-up.
+hold fire for a full 1.5s before any shot. Mechanism accelerates during spin-up.
 Movement locks during spin-up/firing. Release, uncrouch, switch, reload, pause,
 death and menu exit release the lock; each new activation requires another spin-up.
 Nerf Gun: blue/orange toy; 12 + 48 foam darts, 17m/s, 1.6s reload; ZERO body/head damage.
@@ -23,14 +58,12 @@ Pump Shotgun: 5 shells + 25 reserve; nine 15-damage pellets, 8m effective range,
 0.32 kick, 9x ordinary recoil accumulation); moving foregrip and support hand.
 
 SECONDARY BALANCE
-Mini Uzi: 14 damage, 0.065s fire interval, 24 + 72 rounds, 10m effective range,
+Mini Uzi: 11 damage, 0.075s fire interval, 24 + 72 rounds, 10m effective range,
 1.8s reload; higher recoil/spread than the rifle.
 Chainsaw: 14 contact damage per 0.22s cycle, 0.16s contact delay, 1.5m reach,
 60 + 60 fuel, 2.6s refuel. Attacks require fuel and a connecting contact.
 Sawed-Off Shotgun: 2 + 16 shells, eight 16-damage pellets, 4m effective range,
 0.50s shot interval, 2.4s reload; steep range falloff.
-Fire Axe: 95 damage, 2m reach, 1.10s windup and 1.90s full cycle. Impact matches
-the overhead swing. No rapid input bypass; switching cancels pending contact.
 
 EQUIPMENT
 Sticky Bomb: 2 uses, 2.5s fuse from throw, 5m explosion radius, max 145 damage with
@@ -47,7 +80,7 @@ HUD and shop supply rules state the controls and active count. Paused use is rej
 
 OTHER COMBAT/MODEL FIXES
 Sniper pierces sorted unique enemies along the pre-recoil shot ray, stopping at solid
-map geometry. Base body damage is 90; previous 115 x 2.4 = 276 headshot is retained
+map geometry. Base body damage is 90% of each target's maximum health; previous 115 x 2.4 = 276 headshot is retained
 explicitly. Existing long-distance falloff and armor/shield rules remain.
 K9: one local skeleton for body, articulated legs/paws, muzzle, ears, harness, eyes
 and tail. Shared heading/knockdown/hurt/attack/death transforms and matching bounds;
@@ -85,11 +118,11 @@ Existing game saves are browser-local; moving origin/browser requires the existi
 export/merge backup controls. No account/cloud migration or reset was performed.
 
 VERIFICATION
-164 checks pass via node check.cjs, including 132 baseline checks plus new arsenal,
+177 checks pass via node check.cjs, including baseline, arsenal, retirement, optics,
 edge-case and fresh-session checks. Uses mocked WebGL and isolated test storage.
 Checks cover category/odds intervals, supply conservation, 30/60/144 FPS LMG timing,
-pump, axe, harmless darts, swept bolts/sticky collision, moving attachment, exact
-burn duration, C4 1/2/3 detonation, sniper 90/276/cover/deduplication, sandbox isolation,
+pump, harmless darts, swept bolts/sticky collision, moving attachment, exact
+burn duration, C4 1/2/3 detonation, sniper 90%-health body/276 head/cover/deduplication, sandbox isolation,
 invincibility damage guard, nuke delay/cleanup, K9 joints/poses, optics, save failures,
 fresh-session persistence, and waves 1/5/10/15/20/50 in each difficulty.
 Username follow-up checks all three sandbox names, every power, rejected near-matches,
@@ -108,10 +141,12 @@ The user clarified that Block means Glock 19; that weapon was already fixed.
 REMAINING VERIFICATION LIMITS
 - Global leaderboard consistency cannot be tested because worldwide rankings are not
   implemented. Multiplayer remains canceled. Sandbox progress stays excluded from saves.
-- Opera GX Computer Use stopped before gameplay because it could not determine the
-  current URL confidently enough to enforce policy. No further desktop interaction was
-  attempted. Browser graphics/audio/input, cross-session browser persistence, menu layout,
-  perceived early/late-wave difficulty and live FPS are NOT verified by this update.
+- During Update 12, Opera GX showed the previous deployed build; the user stopped
+  Computer Use with Escape before the new build could be loaded. No further app input
+  was attempted. The new sights and translucent flames are not visually verified.
+  Browser graphics/audio/input,
+  cross-session browser persistence, menu layout, perceived early/late-wave difficulty
+  and live FPS are NOT verified by this update.
 
 CRATE REWARDS - EXACT UNCONDITIONAL ODDS (sum 100.00%; no pity/modifiers)
 Item | Category | Rarity | Probability
@@ -120,7 +155,6 @@ Glock 19 | Secondary | Common | 6.50%
 M67 fragmentation grenade | Equipment | Uncommon | 5.50%
 Longshot sniper rifle | Primary | Epic | 2.50%
 BR-3 burst assault rifle | Primary | Rare | 4.00%
-Double-barrel shotgun | Primary | Rare | 3.50%
 Viper submachine gun | Primary | Uncommon | 5.00%
 RPG-7 | Primary | Mythic | 0.10%
 Iron six revolver | Secondary | Rare | 3.50%
@@ -134,12 +168,11 @@ Flamethrower | Primary | Epic | 2.00%
 Tactical Crossbow | Primary | Rare | 3.50%
 LMG | Primary | Epic | 1.80%
 Nerf Gun | Primary | Common | 5.00%
-Pump Shotgun | Primary | Rare | 3.50%
+Pump Shotgun | Primary | Rare | 5.50%
 Mini Uzi | Secondary | Uncommon | 5.50%
-Chainsaw | Secondary | Rare | 3.00%
-Sawed-Off Shotgun | Secondary | Rare | 3.00%
-Fire Axe | Secondary | Uncommon | 4.50%
+Chainsaw | Secondary | Rare | 4.50%
+Sawed-Off Shotgun | Secondary | Rare | 4.50%
 Sticky Bomb | Equipment | Rare | 2.50%
-Molotov | Equipment | Uncommon | 3.50%
-Throwing Knives | Equipment | Common | 4.00%
+Molotov | Equipment | Uncommon | 5.00%
+Throwing Knives | Equipment | Common | 5.50%
 C4 | Equipment | Epic | 1.60%

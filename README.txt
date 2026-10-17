@@ -1,4 +1,4 @@
-BREACH / ARSENAL UPDATE 11
+BREACH / ARSENAL UPDATE 12
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -7,8 +7,19 @@ Desktop keyboard/mouse and WebGL required. The website serves the same dist asse
 Single-player, offline-capable, no external dependencies. Multiplayer remains canceled.
 
 WHAT CHANGED
-13 new weapons/equipment; 28 total crate unlocks. Three category-specific slots remain.
-New K9 skeleton/poses, sniper penetration (90 body / preserved 276 head), Glock/revolver
+26 total crate unlocks. Fire Axe and Double-barrel shotgun removed from play and crates.
+Old equipped copies fall back to the starter rifle/pistol; saved ownership records, credits
+and statistics are retained. Three category-specific slots remain.
+All ranged weapons except the sniper share the AR-4 reflex model, reticle and 49-degree
+aimed FOV. Sniper retains its 28-degree scope.
+Flamethrower: 300 fuel + 300 base reserve, 7 damage every 0.1s (was 6); flames render
+with 55% opacity per surface and fade before expiry. Range/reload unchanged.
+Tactical Crossbow: 60 body / 120 head damage (was 78 / 156), 2.2s reload (was 1.8s);
+accuracy, bolt speed and 1 + 18 ammunition unchanged. Mini Uzi: 11 damage (was 14), 0.075s fire
+interval (was 0.065s), 24 + 72 rounds; 1.8s reload, range and recoil unchanged.
+Sniper body damage scales from enemy maximum health, so full-health enemies survive.
+Existing armor/shield protection and long-range falloff still apply; follow-up hits can kill.
+New K9 skeleton/poses, sniper penetration (90% max-health body / preserved 276 head), Glock/revolver
 open sights and aiming, RPG side-box cleanup, more reliable lifetime statistics,
 falling sandbox nuke and sandbox invincibility. Main-menu reward explanation removed.
 Enemies deal 8% less scaled damage, have 8% wider firearm spread and 6% longer pauses
@@ -23,7 +34,8 @@ travel direction while mouse aiming remains free. No stamina cost or slide coold
 1/2/3 select Primary/Secondary/Equipment; wheel cycles those three slots.
 G uses equipped equipment; V detonates placed C4 (1, 2 or 3 charges).
 C4 placement: aim at a surface within 3m; maximum 3 active charges per wave supply.
-LMG: crouch and hold fire for 1s to spin up. You cannot move while holding it in use.
+LMG: crouch and hold fire for 1.5s to spin up. You cannot move while holding it in use.
+No sliding while the LMG is selected; switching to it ends a slide. Other slots can slide.
 F inspects the karambit. I opens the menu/death Armory. Escape pauses.
 Pause > Main Menu ends the run and preserves legitimately earned credits/statistics.
 
@@ -58,8 +70,11 @@ The user clarified that Block means Glock 19; its aiming fix is already included
 
 VALIDATION
 node build.cjs; node check.cjs; node production-check.cjs
-164 isolated simulation checks passed, including fresh-session save reload. Software
-model previews were inspected. Opera GX gameplay was blocked by Computer Use's inability
-to verify the current browser URL. Actual browser rendering/audio/input, menu layout,
-live persistence and perceived difficulty remain unverified. See the detailed test report.
+177 isolated simulation checks passed, including fresh-session save reload. Software
+model previews were inspected for the earlier arsenal update. During this follow-up,
+Opera GX showed the previous deployed build; the user stopped Computer Use with Escape
+before the new build could be loaded. The new sights and translucent flames remain
+visually unverified.
+Actual browser rendering/audio/input, live persistence and perceived difficulty remain
+unverified. See the detailed test report.
 GitHub main is the requested publication target. Hosting configuration remains unchanged.

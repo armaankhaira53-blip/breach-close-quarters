@@ -9,6 +9,7 @@
 - Read and write source files explicitly as UTF-8. Windows PowerShell default decoding can corrupt multiplication signs and middle dots; inspect the HUD text after scripted replacements.
 - The game uses a self-contained WebGL renderer, with no external dependencies. Keep BREACH.html synchronized with dist/index.html, dist/style.css, and dist/game.js for local delivery.
 - check.cjs verifies simulation behavior with a mocked rendering context. Do not describe it as browser or visual verification.
+- arsenal-tests.cjs starts each scenario with ADS enabled. Sprint/slide tests must explicitly disable ADS before input, since aiming prevents sprinting. Allow only a tiny floating-point tolerance at accumulated-time boundaries, and separately check a clearly pre-boundary time.
 - Use Opera GX for this project's browser playtests, as requested by the user. Verify the loaded local path and update label before inspecting graphics.
 - After editing dist/, run build.cjs and check.cjs; the checks must confirm the standalone HTML contains the exact current JavaScript and CSS.
 - Never ship simulation mutation controls or references to live arrays through a diagnostic API. Inject test-only access into an isolated QA build, and assert that dist/game.js and BREACH.html expose no such API.
