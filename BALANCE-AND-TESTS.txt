@@ -85,27 +85,27 @@ Existing game saves are browser-local; moving origin/browser requires the existi
 export/merge backup controls. No account/cloud migration or reset was performed.
 
 VERIFICATION
-162 checks pass via node check.cjs, including 132 baseline checks plus new arsenal,
+164 checks pass via node check.cjs, including 132 baseline checks plus new arsenal,
 edge-case and fresh-session checks. Uses mocked WebGL and isolated test storage.
 Checks cover category/odds intervals, supply conservation, 30/60/144 FPS LMG timing,
 pump, axe, harmless darts, swept bolts/sticky collision, moving attachment, exact
 burn duration, C4 1/2/3 detonation, sniper 90/276/cover/deduplication, sandbox isolation,
 invincibility damage guard, nuke delay/cleanup, K9 joints/poses, optics, save failures,
 fresh-session persistence, and waves 1/5/10/15/20/50 in each difficulty.
+Username follow-up checks all three sandbox names, every power, rejected near-matches,
+returning to an ordinary name, and byte-for-byte preservation of the normal save.
 Production asset/syntax/standalone synchronization and credential-pattern checks pass.
 Software model previews inspected for all new items, RPG/pistols, and K9 walk/attack/
 knockdown/death. These use simplified shading and are NOT real WebGL gameplay tests.
 
-UNFINISHED / NEEDS CLARIFICATION
-- Authoritative admin access for Aanav2453 and Khibanyan is NOT implemented. This is a
-  static offline-capable single-player game with editable callsigns, no account server,
-  no verified permanent player IDs and no public leaderboard. An identity provider and
-  trusted backend must be selected before secure grants can be made. The existing
-  Arkh_53 public unsaved sandbox is preserved; it is not authenticated administration.
-- Invincibility is tested in that existing isolated sandbox only, not a server-authorized
-  admin feature. No display-name authorization was added for the requested accounts.
-- No catalog item is named Block. Glock 19 and Iron six revolver were individually fixed;
-  Block remains unresolved rather than changing an unrelated weapon.
+USERNAME / WEAPON CLARIFICATIONS
+The user requested the same username-entry powers as Arkh_53 for Aanav2453 and
+Khibanyan. All three exact names now open the same unsaved sandbox and have the same
+powers, including invincibility and the falling nuke. No account backend is required
+for this explicitly requested behavior. Ordinary usernames cannot use the controls.
+The user clarified that Block means Glock 19; that weapon was already fixed.
+
+REMAINING VERIFICATION LIMITS
 - Global leaderboard consistency cannot be tested because worldwide rankings are not
   implemented. Multiplayer remains canceled. Sandbox progress stays excluded from saves.
 - Opera GX Computer Use stopped before gameplay because it could not determine the

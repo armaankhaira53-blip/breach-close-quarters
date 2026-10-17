@@ -49,15 +49,16 @@ SAVES, SANDBOX AND ACCESS LIMITATIONS
 The existing breach.collection.v1 browser-local save is retained. Export/merge a backup
 before changing browser/origin. Unreadable saved bytes are not silently overwritten.
 Personal Stats shows lifetime completed waves and player-credited eliminations.
-Arkh_53 remains a PUBLIC, unsaved sandbox available to anyone entering that callsign.
+Exact callsigns Arkh_53, Aanav2453 and Khibanyan open the same PUBLIC, unsaved sandbox.
 Its test powers do not overwrite ordinary progress. It is not authenticated admin access.
-Requested Aanav2453/Khibanyan secure admin grants require an identity provider and trusted
-backend and are NOT enabled. No public/global leaderboard exists in this release.
-No weapon named Block exists in the catalog; clarification is needed for that item.
+This matches the requested username-entry behavior; no new login system is required.
+All three names receive the same powers, including invincibility and the falling nuke.
+Other usernames do not receive powers. No public/global leaderboard exists.
+The user clarified that Block means Glock 19; its aiming fix is already included.
 
 VALIDATION
 node build.cjs; node check.cjs; node production-check.cjs
-162 isolated simulation checks passed, including fresh-session save reload. Software
+164 isolated simulation checks passed, including fresh-session save reload. Software
 model previews were inspected. Opera GX gameplay was blocked by Computer Use's inability
 to verify the current browser URL. Actual browser rendering/audio/input, menu layout,
 live persistence and perceived difficulty remain unverified. See the detailed test report.

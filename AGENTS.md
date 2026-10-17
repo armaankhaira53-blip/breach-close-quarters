@@ -2,7 +2,8 @@
 
 - For expanded crate tables, compare the random roll against cumulative fractional thresholds. Flooring a floating-point product can select the previous item at an exact boundary; test every interval start and end and require a 10,000 total.
 - Lifetime waves must be recorded on the final credited enemy death before a same-frame player death can interrupt the wave timer. Keep the wave identifier guard and test immediate death, menu exit, and fresh-session reload. Personal Stats should show current normal-profile values if a storage write fails; never overwrite unreadable save bytes with defaults.
-- The Arsenal Update 11 does not add authentication. Aanav2453 and Khibanyan admin grants are pending an identity-provider/backend decision. Never grant them privileges from the editable callsign. Arkh_53 remains the pre-existing public, unsaved sandbox; its invincibility is a sandbox test capability, not verified administrator access.
+- The user explicitly clarified that admin access means the existing editable-username sandbox, not authenticated accounts. Exact usernames Arkh_53, Aanav2453 and Khibanyan must receive the same powers. Use the shared username set for entry and action checks; test all three, ordinary/near-match names and normal-save isolation. Do not add a login/backend requirement unless newly requested.
+- The user clarified that "Block" means the existing Glock 19; do not treat it as another weapon or an unresolved ambiguity.
 
 - Horizontal player and navigation collision checks must exclude the floor plane. After editing collision code, run check.cjs and verify movement and a route across the arena.
 - Read and write source files explicitly as UTF-8. Windows PowerShell default decoding can corrupt multiplication signs and middle dots; inspect the HUD text after scripted replacements.
@@ -24,7 +25,7 @@
 - Status animations must use the same dressed actor and attachments as normal movement; verify appearance definitions and full rotation through dance, knockdown and death.
 - All scope rays must capture aim before applying recoil, and aimed foreground geometry must not obscure the reticle. Test every optic.
 - The owner canceled multiplayer and party codes. Keep this release single-player; do not restore network services or paid hosting without a new request. Personal statistics must not be presented as worldwide rankings.
-- The exact Arkh_53 username intentionally opens a public local sandbox. Never describe it as private authentication, and verify that sandbox changes cannot overwrite the normal save.
+- The configured sandbox usernames intentionally open a public local sandbox. Never describe this as private authentication; verify that sandbox changes cannot overwrite the normal save.
 - Personal Stats belongs on the main menu. Worldwide rankings remain a future feature, not an enabled local-only substitute; multiplayer stays canceled.
 - Magazine bodies and details must share the same local frame. Reloads must extract clear of the receiver before lateral motion, with the support hand following that frame. Verify idle and reload assembly previews.
 - RPG supplies reset to exactly 1 loaded plus 8 reserve every wave. Karambit is 60 damage with a one-hit execution only on a connecting sliding hit against non-SWAT enemies. Every SWAT variant is immune to all karambit damage. Test impact-time, reach, cover and faction immunity together.
