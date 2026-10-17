@@ -1,0 +1,120 @@
+BREACH / WAVE EVENTS UPDATE 13
+
+EVENT SYSTEM
+One guarded chance roll at the first playing update of each survival wave: a value
+below 0.05 triggers one uniformly selected event (four equal intervals). A manually
+occupied event slot suppresses the roll. A completed or failed event retains the
+wave's occupied slot; active events cannot overlap. Practice has no events.
+
+Active objectives show their reward, status, progress, a screen-space tracking marker
+and north-up locator map. They have no skip control or optional label. Objects and
+marked actors also have luminous world markers. All timings use paused simulation
+time. Run exit, death, restart and admin wave changes cancel pending effects.
+
+THIEF: Converts a living current-faction soldier without adding to the wave budget.
+Runs at 3.6m/s (increased from 1.1m/s after user testing) along a validated route of
+at least 24 navigation steps to an exit. Unarmed, carrying a large planked wooden
+crate in both hands, with side handles, cross braces and visible fasteners. Its
+pose follows his heading and status animations; the dropped supplies use the same
+crate model. The dead thief does not regain a weapon.
+Death drops supplies; walking within 1.6m with a clear line of sight collects them
+for exactly 900 credits. Escape removes the soldier from the live count without a
+kill or event reward. After the last enemy dies, a 12-second collection countdown
+holds the next wave. Timeout removes supplies and fails the objective.
+
+CRATE: Reachable location; 240 health with HUD and world health bars. Half of living
+faction soldiers (rounded up), capped at five, attack it. Their attacks deal 12 damage
+every 1.6s within 3m and clear sight. Other enemies keep their existing AI. Successful
+defense awards 1,500 credits on wave clear, including the final-kill path before
+same-frame player death. A destroyed crate fails without ending the run.
+
+BEACON: 30-second countdown, hold E for 15 continuous seconds within 2.3m and clear
+sight. Releasing E or leaving range resets progress. Disable pays 900 credits.
+On expiry, a visible missile descends for 1.8s, then creates a two-second fireball,
+an initial 0.65-second fading lighting flash and the existing synthesized boom.
+After the latest user correction, impact removes exactly half of current health
+once anywhere on the map, independent of difficulty, cover, height and sandbox
+invincibility. It does not turn off invincibility for other damage. The objective
+warns there is no safe zone and the locator marks the entire map as threatened.
+No event credits on failure. An active
+countdown or falling missile holds the next wave; ending the run cancels it.
+
+RADIO: Converts a faction soldier and reserves five other unhurt, unoccupied soldiers
+over 8m from the player, removing them from active play until the call completes.
+The call lasts 10 seconds. Early operator death pays 500 credits and releases the
+reservations permanently. Failure restores those five existing roster members as
+reinforcements. Operator death after failure pays no event bonus. These enemies
+remain ordinary wave enemies after the event fails, to be eliminated for wave clear.
+Original faction, variant and total enemy limits remain unchanged.
+While calling, the operator holds a detailed handheld radio near his face, with an
+antenna, speaker grille and lit display. The prop and raised hand share the actor
+pose through heading changes, dancing and knockdown. His weapon is hidden during
+the call and returns if the call finishes; a killed operator leaves an unarmed body.
+
+ADMIN CONTROLS
+Existing Sandbox Powers panel: select one of the four named events, then click
+START SELECTED EVENT. It bypasses chance but checks wave, occupancy, event type and
+feasibility before modifying gameplay. Paused active runs are accepted because the
+admin panel itself pauses the game. Rejected requests explain the reason.
+
+REFILL ALL AMMO restores every item in the current three-slot loadout, including
+unselected weapons, to magazine and wave-scaled reserve capacity. Fuel, bolts,
+shells, rockets and consumables use their existing configured values; RPG remains
+1 + 8. Planted C4 stays placed and counts toward the total three-charge supply.
+Reload/burst/healing/melee work in progress is canceled; switch, fire and equipment
+cooldowns, current loadout, health and projectiles are preserved. HUD values refresh
+immediately. This is a one-time refill, not unlimited ammunition.
+
+The user explicitly chose to preserve the OFFLINE username sandbox for this update.
+Both actions recheck the existing exact username allowlist on every activation:
+Arkh_53, Aanav2453, Khibanyan. Sandbox progress cannot overwrite normal saved progress.
+These are public local sandbox names, NOT authenticated administrator accounts.
+SERVER VALIDATION IS UNAVAILABLE: there is no backend or public leaderboard. Existing
+sandbox exclusion from normal personal statistics/saves is preserved.
+
+VERIFICATION
+node build.cjs; node check.cjs; node production-check.cjs.
+217 simulation checks cover the current build with mocked WebGL and isolated browser
+storage, including 40 event/refill checks and all prior arsenal, movement, save and
+map regressions. The post-test crate tuning increases damage from 8 to 12 per hit
+and attackers from one third (maximum three) to half (maximum five), without changing
+the wave budget or crate health. Thief carry tests also check rotated/status poses,
+grip alignment, torso clearance, weapon removal and the matching dropped crate.
+Checks cover probability boundaries and equal selection, manual suppression, one
+event per wave, all three authorized names and rejected ordinary/near-match names,
+atomic invalid activation, reachable objectives/factions on three maps at waves
+1/5/10/15/20/50, thief navigation/drop/escape/timeout, crate split AI/destruction and
+same-frame death payout, continuous beacon hold, range/expiry/current-health/invincibility bypass,
+single impact, reserved reinforcements/released slots, next-wave waits, pause/death/
+menu/reset cleanup, exact reward saves, every catalog ammo type at waves 1/20/50,
+C4 supply limits, refill during pending actions, HUD updates, sandbox save isolation
+and 30/60/144 FPS beacon interaction. Build checks confirm exact standalone JS/CSS,
+UI references, no optional/skip control, no production diagnostic or visual fixtures,
+and the unchanged three-file public asset inventory.
+
+Opera GX: verified the local path and Update 13 label, deployed a sandbox wave,
+opened the real admin panel, enabled invincibility and manually started the thief.
+Observed its active objective, reward, marker and locator path. Found and repaired
+marker/HUD overlap. In a separate, nonpublished visual-fixture page, inspected crate
+health bars, beacon progress/radius, missile mesh, fireball/lighting, radio countdown
+and highlights, dropped supplies and collection countdown. These fixtures freeze
+scenes for inspection; they do not prove real-time gameplay behavior.
+
+The handheld radio was visually checked in an isolated Opera GX fixture from the
+front, side and back, plus dance and knockdown poses. The model stays in the hand.
+The later thief carry-model visual check was interrupted by the user with Escape.
+The updated carrying pose, crate difficulty and 15-second beacon hold still need
+the user's live playtest. The map-wide airstrike change is simulation-verified;
+live browser damage has not been rechecked.
+
+NOT VERIFIED: human-perceived difficulty across full runs, live frame-rate benchmarks,
+audible sound quality, real mouse/keyboard completion of every event, browser restart
+save persistence, and an independent deployed-host playthrough. Server authorization
+and public leaderboard behavior are unavailable by the agreed offline scope.
+
+PUBLICATION
+The user authorized committing and publishing the latest version after the radio
+updates on 2026-10-16, releasing the earlier test-before-publication hold.
+GitHub main is the requested target. Hosting configuration stays unchanged. Publish
+only reviewed source/build/test/document files; exclude local snapshots, visual QA,
+deployment records and one-time tooling. Verify remote file hashes after publication.

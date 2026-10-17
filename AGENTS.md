@@ -44,3 +44,15 @@
 - The player machete is intentionally weak: 25 damage, 1.65m reach, 1s cooldown, no sliding execution. Test full-health human/K9 survival on normal/sliding hits; keep karambit mechanics unchanged when tuning the machete.
 
 - Rocket boosts are transient: clear on floor/roof/cover landing, death, menu exit and invalid recovery. Sweep projectile impacts; require a player-owned downward surface blast and headroom. Verify 30/60/144 FPS, ceilings, roof relaunches and nine-rocket supply conservation. Lethal-damage tests must account for passive healing before impact.
+
+- Wave-event victory tied to the final enemy death must resolve and save in the death path before later same-frame player damage. Test a final kill immediately followed by lethal damage, including crate rewards.
+- Refill tests must take a new ammunition baseline after each explicit refill. Then fire and advance time to verify there is no automatic refill; a second requested refill legitimately restores previously spent rounds.
+- For the wave-events update the user explicitly chose to preserve the offline username sandbox and report server validation as unavailable. Keep the three exact sandbox names, normal-save isolation, and no public leaderboard; do not describe these checks as authenticated authorization.
+
+- The user released the Update 13 publication hold on 2026-10-16 and explicitly requested committing and publishing the latest version after the radio updates. Publish a freshly reviewed clean snapshot and verify remote hashes; do not reuse hashes from earlier unpublished builds.
+
+- A carried event prop must attach to the actor's pose and heading, with hands on its grips and clearance from the torso. The supply thief is unarmed and holds a large wooden crate in front; suppress all weapon render paths, including status poses and the corpse. Inspect front/side/back and dropped-prop views before delivery.
+
+- The user revised failed airstrikes: remove half of CURRENT health once everywhere on the map, bypassing admin invincibility for this hit only. Do not restore the old 9m/max-health rule or suggest escaping a safe radius. Verify injured health, distant/elevated players, difficulty, invincibility and the displayed health through the full update loop.
+
+- Event reinforcement HUD counts must come from the reserved roster rather than a numeric label. When changing squad size, verify the displayed count alongside budget reservation and arrival.

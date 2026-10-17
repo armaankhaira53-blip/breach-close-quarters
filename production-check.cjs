@@ -25,6 +25,11 @@ assert(html.includes('Co-owner Khibanyan'), 'Co-owner credit');
 assert(!/stamina|slideCD/.test(runtime) && !/id="stamina"|class="stamina"/.test(html), 'Unlimited movement has no stamina bar, exhaustion or slide cooldown');
 assert(!/fetch\s*\(|WebSocket|networkAction|initializeNetworkUI/.test(runtime), 'Single-player release has no multiplayer connections');
 assert(!/createParty|joinParty|partyCode|leaderboardButton/.test(html), 'No canceled multiplayer or worldwide-ranking controls');
+assert(!/visualFixture|qaControls|QA ONLY/.test(runtime), 'No visual fixture controls in production');
+for (const id of ['eventObjective','eventTitle','eventReward','eventDetail','eventProgress','eventMap','eventMarker','adminEvent']) assert(ids.includes(id), 'Event interface exists: '+id);
+assert(html.includes('data-admin="refill"')&&html.includes('data-admin="event"'), 'Both admin controls are present');
+const objectiveMarkup=html.slice(html.indexOf('<section id="eventObjective"'),html.indexOf('<div id="feed"'));
+assert(!/optional|skip|<button/i.test(objectiveMarkup), 'Active objective has no optional label or skip button');
 const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map(match => match[1]);
 for (const ref of references) {
   assert(expected.includes(ref), 'Unexpected or external asset reference');

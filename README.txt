@@ -1,4 +1,4 @@
-BREACH / ARSENAL UPDATE 12
+BREACH / WAVE EVENTS UPDATE 13
 Created and owned by Arkh_53 · Co-owner Khibanyan
 
 PLAY
@@ -7,6 +7,19 @@ Desktop keyboard/mouse and WebGL required. The website serves the same dist asse
 Single-player, offline-capable, no external dependencies. Multiplayer remains canceled.
 
 WHAT CHANGED
+Four wave events with one 5% total chance per wave, active objectives and locator maps.
+Thief: recover supplies for 900 credits. Crate: defend for 1,500. Beacon: hold E
+for 15s before its 30s timer for 900. Radio: stop the 10s call for 500. One event
+per wave, with budgeted reinforcements and cleanup on death/menu/restart.
+Sandbox Powers adds an event selector and one-time REFILL ALL AMMO.
+Testing follow-ups: thief runs at 3.6m/s carrying a wooden crate without a weapon.
+The protected crate now takes 12 damage per hit; half the soldiers, capped at five,
+target it. Radio operators hold a radio while calling; failure brings five reserved
+reinforcements after 10 seconds. Failed airstrikes now halve current health anywhere on the map, even
+with admin invincibility enabled. Reload the game to load these changes.
+See WAVE-EVENTS-AND-TESTS.txt for timers, implementation, checks and limitations.
+
+RETAINED ARSENAL UPDATE
 26 total crate unlocks. Fire Axe and Double-barrel shotgun removed from play and crates.
 Old equipped copies fall back to the starter rifle/pistol; saved ownership records, credits
 and statistics are retained. Three category-specific slots remain.
@@ -70,11 +83,11 @@ The user clarified that Block means Glock 19; its aiming fix is already included
 
 VALIDATION
 node build.cjs; node check.cjs; node production-check.cjs
-177 isolated simulation checks passed, including fresh-session save reload. Software
-model previews were inspected for the earlier arsenal update. During this follow-up,
-Opera GX showed the previous deployed build; the user stopped Computer Use with Escape
-before the new build could be loaded. The new sights and translucent flames remain
-visually unverified.
-Actual browser rendering/audio/input, live persistence and perceived difficulty remain
-unverified. See the detailed test report.
+217 isolated simulation checks cover this build. Opera GX verified the local Update 13, real
+sandbox event activation and objective layout; separate visual fixtures verified
+crate, beacon, missile, fireball/lighting, radio and supply pickup presentation.
+Audible sound quality, full-run difficulty, real-input completion of all events,
+browser restart persistence and an independent deployed-host playthrough remain
+unverified. Server validation is unavailable under the agreed offline scope.
+See WAVE-EVENTS-AND-TESTS.txt for the detailed report.
 GitHub main is the requested publication target. Hosting configuration remains unchanged.
